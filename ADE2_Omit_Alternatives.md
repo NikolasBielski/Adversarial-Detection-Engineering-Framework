@@ -229,7 +229,7 @@ Some variants of linux use cron paths not included above:
 
 A False Negative could exist where the machine's distribution being logged is one with the ommitted version file paths above. In ADE we call this a bug by the omission of alternative versioning, or **ADE2-02 Omit Alternatives - Versioning.**
 
-More so, because the rule assumes root permissions as a possibility, an attacker versed in the bug may manipulate and create new file paths. In ADE we call this a bug by reformatting in actions, or **ADE1-01 Reformatting Actions - Substring Manipulation.**
+More so, because the rule assumes root permissions as a possibility, an attacker versed in the bug may manipulate and create new file paths. In ADE we call this a bug by reformatting in actions, or **ADE1-01 Reformatting in Actions - Substring Manipulation.**
 
 ---
 
