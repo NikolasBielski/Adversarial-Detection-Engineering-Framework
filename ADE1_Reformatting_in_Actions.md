@@ -169,7 +169,7 @@ falsepositives:
 level: low
 ```
 
-This detection logic relies on process creation records that include Get-NETTCPConnection substring.
+This detection logic relies on PowerShell records that include Get-NETTCPConnection substring.
 
 The *bug* is the reliance on substrings that are mutable by the attacker, or **ADE1-01 Substring Manipulation**.
 
@@ -177,9 +177,9 @@ The *bug* is the reliance on substrings that are mutable by the attacker, or **A
 
 > ADE01-01 Bug Category: Reformatting in Actions - Substring Manipulation
 
-The logsource category ps_classic_start in Sigma is for Windows Security Event ID `4688 (process creation)`. Logged info includes; `NewProcessName`, `CommandLine` (if enabled), `ParentProcessName`, `Process ID`, `User`, etc. 
+The logsource category ps_classic_start in Sigma is for PowerShell Event ID [400 (PowerShell CommandLine Logging)](https://github.com/SigmaHQ/pySigma-pipeline-windows/blob/main/sigma/pipelines/windows/windows.py#L10). Logged info includes; `CommandName`, `CommandLine`, `ScriptName`, etc. 
 
-The field value that includes the substring would be `Commandline`. The command below utilizes `Get-NetTCPConnection` to dump connection information as json into `tcp.json` while creating a False Negative.
+The field value that includes the substring would be `CommandLine`. The command below utilizes `Get-NetTCPConnection` to dump connection information as json into `tcp.json` while creating a False Negative.
 
 ```powershell
 $ps = [System.Management.Automation.PowerShell]::Create();
