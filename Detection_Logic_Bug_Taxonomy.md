@@ -53,7 +53,7 @@ Reformatting in Actions occurs when a detection rule relies on **string match co
 This has been widely exploited by Threat Actors for years and still appears in modern SIEM rules.
 
 **Subcategories:**
-- **ADE1-01 eformatting in Actions - Substring Manipulation**  
+- **ADE1-01 Reformatting in Actions - Substring Manipulation**
   When detection logic relies on substring matches, an attacker can alter or obfuscate the input data so that the hypothesis conditions are not met, resulting in a False Negative.
 
 

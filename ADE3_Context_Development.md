@@ -43,7 +43,7 @@ If the attacker has sufficient privileges to duplicate and rename a binary, they
 
 ### ADE3-01, Example 1:  [Wget Creating Files in Tmp Directory](https://github.com/SigmaHQ/sigma/blob/master/rules/linux/file_event/file_event_lnx_wget_download_file_in_tmp_dir.yml)
 
-This rule seeks to detect use of wget to download content in a temporary directory such as "/tmp" or "/var/tmp". This was created in response to GobRAT malware by Joseliyo Sanchez and is included as one of mulitple detection rules released their [excellent writeup on GobRAT](https://jstnk9.github.io/jstnk9/research/GobRAT-Malware/) in in May 2023.
+This rule seeks to detect use of wget to download content in a temporary directory such as "/tmp" or "/var/tmp". This was created in response to GobRAT malware by Joseliyo Sanchez and is included as one of mulitple detection rules released their [excellent writeup on GobRAT](https://jstnk9.github.io/jstnk9/research/GobRAT-Malware/) in May 2023.
 
 The event log that captured this activity was provided in Joseliyo's writeup, as below.
 ```XML
@@ -325,7 +325,7 @@ There are a few considerations, but the context needs to match the following in 
 - non local admin user can read contents in `%APPDATA%\Microsoft\Windows\Recent\` in thier own account (not others)
 - Admin can read all users `%APPDATA%\Microsoft\Windows\Recent\`
 
-There is also a different between where `process.name.caseless` and `process.pe.original_file_name`are used in the detection logic. The latter is an immutable value, so better for robust detections. This may also indicate a potential **ADE2-01 Contextual Development - Process Cloning** Bug in the detection logic, as `process.name.caseless` takes the name of the executable actually ran (a renamed copy would have it's new name here).
+There is also a difference between where `process.name.caseless` and `process.pe.original_file_name`are used in the detection logic. The latter is an immutable value, so better for robust detections. This may also indicate a potential **ADE2-01 Contextual Development - Process Cloning** Bug in the detection logic, as `process.name.caseless` takes the name of the executable actually ran (a renamed copy would have it's new name here).
 
 ---
 
@@ -389,7 +389,7 @@ The field `process.name` is mutable, as discussed above. So there detection logi
 Milliseconds VS seconds? Because there is no public documentation ADE assumes it's in seconds because:
 1. The intention of the use of the enrichment field is to catch recent activity prior prcess creation, and
 2. Milliseconds would be too narrow of a view in practice, due to latencies that may be present across different hosts,
-3. Although the two inputted timestamps are in milliseconds, assuming the larger of the two is the safest bet with False Negatives (as a False Negative example to seconds would also worl with milliseconds)
+3. Although the two inputted timestamps are in milliseconds, assuming the larger of the two is the safest bet with False Negatives (as a False Negative example to seconds would also work with milliseconds)
 
 #### Bug 2, ADE3-03 Context Development - Timing and Scheduling
 
