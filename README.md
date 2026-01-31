@@ -4,7 +4,7 @@
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/NikolasBielski/Adversarial-Detection-Engineering-Framework)](https://github.com/NikolasBielski/Adversarial-Detection-Engineering-Framework/commits/main)
 [![GitHub License](https://img.shields.io/github/license/NikolasBielski/Adversarial-Detection-Engineering-Framework)](https://github.com/NikolasBielski/Adversarial-Detection-Engineering-Framework/blob/main/LICENSE)
 
-- ✅ Get ahead of False Negatives by understanding how detection logic fails before threat actors exploit it
+- ✅ Get ahead of False Negatives by understanding how detection logic fails before threat actors abuse them
 - ✅ Identify reproducible detection logic bugs and map them to formal ADE categories
 - ✅ Embed an attacker’s mental model into how detection logic is designed and reviewed
 - ✅ Expose structural weaknesses in rules used for hunts or production MDR tooling (SIEM, XDR, EDR)
