@@ -325,7 +325,7 @@ There are a few considerations, but the context needs to match the following in 
 - non local admin user can read contents in `%APPDATA%\Microsoft\Windows\Recent\` in thier own account (not others)
 - Admin can read all users `%APPDATA%\Microsoft\Windows\Recent\`
 
-There is also a different between where `process.name.caseless` and `process.pe.original_file_name`are used in the detection logic. The latter is an immutable value, so better for robust detections. This may also indicate a potential **ADE2-01 Contextual Development - Process Cloning** Bug in the detection logic, as `process.name.caseless` takes the name of the executable actually ran (a renamed copy would have it's new name here).
+There is also a difference between where `process.name.caseless` and `process.pe.original_file_name`are used in the detection logic. The latter is an immutable value, so better for robust detections. This may also indicate a potential **ADE2-01 Contextual Development - Process Cloning** Bug in the detection logic, as `process.name.caseless` takes the name of the executable actually ran (a renamed copy would have it's new name here).
 
 ---
 
