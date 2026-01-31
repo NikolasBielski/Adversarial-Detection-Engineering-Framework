@@ -315,7 +315,7 @@ network where host.os.type == "windows" and dns.question.name != null and
 '''
 ```
 
-##### Bypass 1: Omitted location,  Bug subcategory: ADE2-02 Omit Alternatives - Locations
+##### Bypass 1: Omitted location,  Bug subcategory: ADE2-03 Omit Alternatives - Locations
 
 Usually, a user account that doesn't have local administrator privileges, can write to their own file paths. E.g user "testUser" would usually be able to write to `Users\testUser`. 
 
@@ -354,7 +354,7 @@ process.name in ("curl", "wget") and process.args like~ (
 The resources included in the detection logic are specifically for gathering information about the Kubernetes environment such as; secrets, config maps, and other sensitive data.
 
 
-##### Bypass 1: Omitted location,  Bug subcategory: ADE2-02 Omit Alternatives - Locations
+##### Bypass 1: Omitted location,  Bug subcategory: ADE2-03 Omit Alternatives - Locations
 
 However, there are a few other subresources in API groups that aren't included that are commonly abused in environments with poor RBAC.
 - `*/api/v1/namespaces/*/pods/*/log*`
@@ -366,7 +366,7 @@ However, there are a few other subresources in API groups that aren't included t
 - `*/authentication.k8s.io/*` (which is not `authorization.k8s.io/*`) for tokenreviews
 - `*/certificates.k8s.io/*` for certificatesigningrequests resources such as client cert requests, CSRs etcc
 
-In ADE, these are API locations due to the path being used in the search, so are also given the bug subcategory **ADE1-03 Omit Alternatives - Location** as well as **ADE1-01 Omit Alternatives - API/Function**
+In ADE, these are API locations due to the path being used in the search, so are also given the bug subcategory **ADE2-03 Omit Alternatives - Location** as well as **ADE2-01 Omit Alternatives - API/Function**
 
 
 ---
@@ -427,11 +427,10 @@ This elastic detection rule looks for those extensions and header byte matches b
 ---
 
 **Contents**
-
 - [README.md](README.md)
 - [Detection Logic Bug Theory](Detection_Logic_Bug_Theory.md)
 - [Detection Logic Bug Taxonomy](Detection_Logic_Bug_Taxonomy.md)
-- [ADE1 Reformatting in Actions](ADE1_Reformatting_in_Actions.md)**
+- [ADE1 Reformatting in Actions](ADE1_Reformatting_in_Actions.md)
 - **ADE2 Omit Alternatives (Current Page)**
 - [ADE3 Context Development](ADE3_Context_Development.md)
 - [ADE4 Logic Manipulation](ADE4_Logic_Manipulation.md)

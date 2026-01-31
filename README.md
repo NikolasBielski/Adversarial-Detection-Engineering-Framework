@@ -83,7 +83,7 @@ Other issues that may affect a detection rule, but are outside ADE’s scope, in
 
 ## Want to contribute?
 
-Author:  [Nikolas Bielski](Linkedin)
+Author:  [Nikolas Bielski](https://www.linkedin.com/in/nikbielski/)
 
 ### Current Opportunities for Contributors
 

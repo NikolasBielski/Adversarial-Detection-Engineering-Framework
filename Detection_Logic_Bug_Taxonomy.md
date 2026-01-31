@@ -53,7 +53,7 @@ Reformatting in Actions occurs when a detection rule relies on **string match co
 This has been widely exploited by Threat Actors for years and still appears in modern SIEM rules.
 
 **Subcategories:**
-- **ADE1-01 eformatting in Actions - Substring Manipulation**  
+- **ADE1-01 Reformatting in Actions - Substring Manipulation**
   When detection logic relies on substring matches, an attacker can alter or obfuscate the input data so that the hypothesis conditions are not met, resulting in a False Negative.
 
 
@@ -123,8 +123,8 @@ Logic Manipulation occurs when an attacker analyzes detection logic as Boolean c
 To explore taxonomy categories further and see examples, visit the relevant bug category page below.
 
 **Contents**
--- [README.md](README.md)
-- [Detection  Logic Bug Theory](Detection_Logic_Bug_Theory.md)
+- [README.md](README.md)
+- [Detection Logic Bug Theory](Detection_Logic_Bug_Theory.md)
 - **Detection Logic Bug Taxonomy (Current Page)**
 - [ADE1 Reformatting in Actions](ADE1_Reformatting_in_Actions.md)
 - [ADE2 Omit Alternatives](ADE2_Omit_Alternatives.md)
