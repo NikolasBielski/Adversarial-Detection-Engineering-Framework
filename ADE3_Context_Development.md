@@ -482,12 +482,9 @@ The above example is tyring to capture command similar to `tasklist | findstr "l
 `.
 However, the detection logic uses conjunctive substring matching, requiring multiple substrings to be present in a single field (e.g., `CommandLine|contains|all: ['tasklist', 'findstr', 'lsass']`). In windows shell operators automatically fragment commands.  Operators like `|` and `&` split a single command into multiple process creation events at the OS level. Each event contains only part of the original command, no single event satisfies all the required conditions.
 
-`cmd.exe`’s process creation event will likely exist, but the `CommandLine` would be only `cmd.exe` or `cmd.exe /c tasklist`.
-
-Within the example above, three separate process creation events are logged, with the `CommandLine` below:
-1. `cmd.exe /c tasklist`
-2. `tasklist`
-3. `findstr "lsass"`
+Within the example above, two separate process creation events are logged, with the `CommandLine` below:
+1. `tasklist`
+2. `findstr "lsass"`
 
 
 
