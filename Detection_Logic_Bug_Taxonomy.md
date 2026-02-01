@@ -40,6 +40,7 @@ The full taxonomy consists of 4 categories, and 11 sub-categories
     ├─ ADE3-01 Process Cloning
     ├─ ADE3-02 Aggregation Hijacking
     └─ ADE3-03 Timing and Scheduling
+    └─ ADE3-04 Event Fragmentation
 🌳 ADE4 – Logic Manipulation
     ├─ ADE4-01 Gate Inversion
     ├─ ADE4-02 Conjunction Inversion
@@ -102,6 +103,13 @@ An attacker may deliberately perform preparatory activity to ensure their behavi
 **ADE3-03 Context Development - Timing and Scheduling**
 This occurs when detection logic relies on **time-based assumptions**, such as execution frequency, duration, or inter-event timing.
 By spacing, batching, or scheduling actions to avoid inclusion within rule execution windows or aggregation periods, an attacker can bypass detection without changing the underlying behavior.
+
+
+**ADE3-04 Context Development - Event Fragmentation**
+
+This occurs when detection logic relies on **multi-substring matching** (`using |all`, `contains|all`, or multiple `AND` conditions) while assuming all required substrings will appear in a single process creation event. However, shell operators like `|` and `&` cause commands to be split into multiple separate process creation events, preventing the detection logic from matching, resulting in a False Negative.
+
+*Result*: In-scope malicious activity bypasses detection without the attacker needing to know the rule exists
 
 
 ---

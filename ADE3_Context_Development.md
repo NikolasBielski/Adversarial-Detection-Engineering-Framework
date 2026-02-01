@@ -30,6 +30,16 @@ This occurs when detection logic relies on **time-based assumptions**, such as e
 
 By spacing, batching, or scheduling actions to avoid inclusion within rule execution windows or aggregation periods, an attacker can bypass detection without changing the underlying behavior.
 
+**ADE3-04 Context Development - Event Fragmentation**
+
+This occurs when detection logic relies on **multi-substring matching** (`using |all`, `contains|all`, or multiple `AND` conditions) while assuming all required substrings will appear in a single process creation event. However, shell operators like `|` and `&` cause commands to be split into multiple separate process creation events, preventing the detection logic from matching, resulting in a False Negative.
+
+*Result*: In-scope malicious activity bypasses detection without the attacker needing to know the rule exists
+
+Related research:
+- [Detection Pitfalls](https://detect.fyi/detection-pitfalls-you-might-be-sleeping-on-52b5a3d9a0c8)
+- [Unintentional Evasion: Investigating Command Line Logging Gaps](https://detect.fyi/unintentional-evasion-investigating-how-cmd-fragmentation-hampers-detection-response-e5d7b465758e)
+
 ---
 
 
@@ -442,6 +452,43 @@ If `outlook.exe` is not running prior to this, then there will be a process crea
 An attacker with the ability to create a file and run it would likely also have the ability to see currently running processes. They can either use the fact that `outlook.exe` is already running, or they can launch it themselves legitimately, wait, then use that existing process to create a False Negative. Both of these actions develop the context of the host in order to hijack the aggregation or the rule (the aggregation being the grouping of the process ids, as the action voids the generation of one).
 
 By now, you may be thinking "how often does Elastic Endgame rely on `process.Ext.relative_file_creation_time` or `process.Ext.relative_file_name_modify_time`"?. ADE will not outline this exactly as it's about improving bugs, although this is an intriguing question which may bring a suprising answer to the reader if they investiagte it themselves.
+
+## ADE3-04 Context Development - Event Fragmentation, Examples
+
+This occurs when detection logic relies on **multi-substring matching** (`using |all`, `contains|all`, or multiple `AND` conditions) while assuming all required substrings will appear in a single process creation event. However, shell operators like `|` and `&` cause commands to be split into multiple separate process creation events, preventing the detection logic from matching, resulting in a False Negative.
+
+*Result*: False Negative. In-scope malicious activity bypasses detection without the attacker needing to know the rule exists
+
+### ADE3-04 Example 1: Potential LSASS Process Reconnaissance (Pseudo Code Example)
+
+This rule intends to detect attempts to identify or enumerate the LSASS (Local Security Authority Subsystem Service) process on a Windows system.
+
+```yaml
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection_cmd:
+        Image|endswith: '\cmd.exe'
+    selection_findstr:
+        CommandLine|contains|all:
+            - 'tasklist'
+            - 'findstr'
+            - 'lsass'
+    condition: all of selection_*
+```
+
+The above example is tyring to capture command similar to `tasklist | findstr "lsass"
+`.
+However, the detection logic uses conjunctive substring matching, requiring multiple substrings to be present in a single field (e.g., `CommandLine|contains|all: ['tasklist', 'findstr', 'lsass']`). In windows shell operators automatically fragment commands.  Operators like `|` and `&` split a single command into multiple process creation events at the OS level. Each event contains only part of the original command, no single event satisfies all the required conditions.
+
+`cmd.exe`’s process creation event will likely exist, but the `CommandLine` would be only `cmd.exe` or `cmd.exe /c tasklist`.
+
+Within the example above, three separate process creation events are logged, with the `CommandLine` below:
+1. `cmd.exe /c tasklist`
+2. `tasklist`
+3. `findstr "lsass"`
+
 
 
 ---
