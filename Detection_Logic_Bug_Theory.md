@@ -36,7 +36,7 @@ In programming, a design/logic bug is a **flaw, error, or fault** in software th
 
 A bug in **detection logic** can either lead to the generation of **False Negative**s* or *False Positives*. Please note that the ADE framework currently only covers Detection Logic Bug categories which result in **False Negative** generation.
 
-### Detection Logic Bugs that generate Fale Negatives
+### Detection Logic Bugs that generate False Negatives
 
 In this case, a flaw, error or fault of the detection logic is considered a bug if, under specific conditions in the record, the hypothesis test brings unexpected, incorrect or unintended behavior. This is because the detection logic is expected to contain all conditions that would fulfill the **scope** of the rule.
 

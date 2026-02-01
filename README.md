@@ -46,7 +46,7 @@ This adversarial line of reasoning mirrors how threat actors abuse weaknesses in
 
 ## ADE Detection Logic Bug Taxonomy
 
-The full taxonomy consists of 4 categories, and 11 sub-categories, each including an example of a bug and it's resulting False Negative that can occur if abused.
+The full taxonomy consists of 4 categories, and 12 sub-categories, each including an example of a bug and it's resulting False Negative that can occur if abused.
 
 ```
 🌳 ADE1 – Reformatting in Actions
@@ -60,6 +60,7 @@ The full taxonomy consists of 4 categories, and 11 sub-categories, each includin
     ├─ ADE3-01 Process Cloning
     ├─ ADE3-02 Aggregation Hijacking
     └─ ADE3-03 Timing and Scheduling
+    └─ ADE3-04 Event Fragmentation
 🌳 ADE4 – Logic Manipulation
     ├─ ADE4-01 Gate Inversion
     ├─ ADE4-02 Conjunction Inversion
@@ -81,9 +82,10 @@ Other issues that may affect a detection rule, but are outside ADE’s scope, in
 - **Data Quality Issues:** Required signals are missing, unreliable, or inconsistent, leading to weak or incomplete detection coverage.  
 - **Tuning Issues:** Detection logic is overly broad or “greedy,” which may cause false positives but is not a logic bug.  
 
-## Want to contribute?
+## Maintainers
 
-Author:  [Nikolas Bielski](https://www.linkedin.com/in/nikbielski/)
+- [Nikolas Bielski](https://www.linkedin.com/in/nikbielski/)
+- [Daniel Koifman](https://www.linkedin.com/in/koifman-daniel/)
 
 ### Current Opportunities for Contributors
 
@@ -140,4 +142,6 @@ The authors and collaborators strongly discourage the use of this framework for 
 - [ADE1 Reformatting in Actions](ADE1_Reformatting_in_Actions.md)
 - [ADE2 Omit Alternatives](ADE2_Omit_Alternatives.md)
 - [ADE3 Context Development](ADE3_Context_Development.md)
+- [ADE4 Logic Manipulation](ADE4_Logic_Manipulation.md)
+- [Bug Likelihood Test](Bug_Likelihood_Test.md)
 - [LICENCE](LICENSE)

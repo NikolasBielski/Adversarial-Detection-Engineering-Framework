@@ -21,52 +21,7 @@ A detection rule has been assessed using the ADE process and it is determined th
 
 Where detection logic searches for specific API use, yet alternative APIs exist within the detection rule scope that the detection logic doesn't cover for. This is a bug by the omission of alternative APIs in the detection logic.
 
-#### ADE2-01, Example 1: [Potential File Transfer via Curl for Windows](https://github.com/elastic/detection-rules/blob/main/rules/windows/command_and_control_tool_transfer_via_curl.toml)
-
-This elastic security detection rule, seeks to identify Curl for Windows making a HTTP request, because adversaries may abuse Curl to download files or upload data to a remote URL.
-
-The related query logic is as below.
-```SQL
-query = '''
-process where host.os.type == "windows" and event.type == "start" and
-  process.executable : (
-    "?:\\Windows\\System32\\curl.exe",
-    "?:\\Windows\\SysWOW64\\curl.exe"
-  ) and
-  process.command_line : "*http*" and
-  process.parent.name : (
-    "cmd.exe", "powershell.exe",
-    "rundll32.exe", "explorer.exe",
-    "conhost.exe", "forfiles.exe",
-    "wscript.exe", "cscript.exe",
-    "mshta.exe", "hh.exe", "mmc.exe"
-  ) and 
-  not (
-    ?user.id == "S-1-5-18" and
-    /* Don't apply the user.id exclusion to Sysmon for compatibility */
-    not event.dataset : ("windows.sysmon_operational", "windows.sysmon")
-  ) and
-  /* Exclude System Integrity Processes for Sysmon */
-  not ?winlog.event_data.IntegrityLevel == "System"
-```
-
-##### Rule Bypass 1: Omitted functionality,  Bug subcategory: ADE2-01 Omit Alternative - API/Function
-
-Curl for Windows is essentially an alias of `Invoke-WebRequest`, which will be called when using Curl for Windows. With `Invoke-WebRequest` you can chose to provide the protocol in the url itself or specify this as a parameter. What's uncommonly known is that in windows `curl` does not require the protocol to be provided *at all* in order to download a file using http/https. 
-
-If you run in windows powershell;
-```Powershell
-curl raw.githubusercontent.com/elastic/detection-rules/refs/heads/main/rules/windows/command_and_control_tool_transfer_via_curl.toml
-```
-Powershell will quietly auto-append the protocol to the front of the url, prior to passing it to `Invoke-WebRequest`, resulting in the query's condition `process.command_line : "*http*" and` to **not catch anything (False Negative)** as the commandline doesn't include the substring `http`. An alternative function has been omitted, that is, the auto-append of the protocol.
-
-In ADE we call this a bug by the omission of an alternative api/funtion, or **ADE2-01 Omit Alternative - API/Function.**
-
-In this specific example, ADE also treats this as an **ADE4-02 Logic Manipulation - Conjunction Inversion** bug, as the condition `process.command_line : "*http*" and` can be intentionally flipped (or inverted) due to the Conjunction operator 'and'.
-
-
-
-#### ADE2-01, Example 2: [Changes to internet facing AWS RDS Database instances](https://github.com/Azure/Azure-Sentinel/blob/master/Solutions/Amazon%20Web%20Services/Analytic%20Rules/AWS_ChangeToRDSDatabase.yaml)
+#### ADE2-01, Example 1: [Changes to internet facing AWS RDS Database instances](https://github.com/Azure/Azure-Sentinel/blob/master/Solutions/Amazon%20Web%20Services/Analytic%20Rules/AWS_ChangeToRDSDatabase.yaml)
 
 This Kusto rule looks for changes to Amazon Relational Database Services (RDS) in use within an AWS environment.
 
@@ -229,7 +184,7 @@ Some variants of linux use cron paths not included above:
 
 A False Negative could exist where the machine's distribution being logged is one with the ommitted version file paths above. In ADE we call this a bug by the omission of alternative versioning, or **ADE2-02 Omit Alternatives - Versioning.**
 
-More so, because the rule assumes root permissions as a possibility, an attacker versed in the bug may manipulate and create new file paths. In ADE we call this a bug by reformatting in actions, or **ADE1-01 Reformatting Actions - Substring Manipulation.**
+More so, because the rule assumes root permissions as a possibility, an attacker versed in the bug may manipulate and create new file paths. In ADE we call this a bug by reformatting in actions, or **ADE1-01 Reformatting in Actions - Substring Manipulation.**
 
 ---
 

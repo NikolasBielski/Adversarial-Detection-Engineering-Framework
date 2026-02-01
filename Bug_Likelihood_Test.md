@@ -68,6 +68,13 @@ Then, continue on with the Bug Likelihoot Test.
       - ADE3‑02 – Context Development (Aggregation Hijacking)
       - Entity coupling and suppression logic can be gamed to fold malicious activity into existing baselines or suppress alerts.
 
+
+- [ ] Does the detection rely on multi substring matching or exact command sequences assuming all substrings appear in a single process creation event?
+
+      - ADE3‑04 – Event Fragmentation  
+      - Rules using `contains|all`, multiple `AND` conditions, or expecting a single event to include an entire piped command can fail because shell operators (`|`, `&`) split the execution across multiple process creation events. This leads to **False Negatives** even when the attack occurs exactly as intended.  
+
+
 - [ ] Does the rule scope exclude privileged accounts such as root or administrator, yet isn’t for privilege escalation?
       
       - ADE4‑03 – Logic Manipulation (Incorrect Expression)
