@@ -109,62 +109,6 @@ A detection rule has been assessed using the ADE process and it is determined th
 4. **Aging rules** - New APIs/versions released after rule creation
 5. **Copy-paste detection engineering** - Reusing patterns without validation
 
-## Mitigation Strategies
-
-### 1. Exhaustive Alternative Enumeration
-
-**For APIs/Functions:**
-- Review complete API documentation
-- Check for deprecated and replacement APIs
-- Include reflection/indirect invocation methods
-- Test with multiple programming languages
-
-**For Versions:**
-- Document supported OS/software versions
-- Monitor vendor release notes for changes
-- Plan for deprecation cycles
-- Test across version ranges
-
-**For Locations:**
-- Enumerate all valid file system paths
-- Check registry location alternatives
-- Account for user vs system directories
-- Consider 32-bit vs 64-bit paths
-
-**For File Types:**
-- List all relevant MIME types
-- Include magic byte signatures
-- Account for double extensions
-- Consider archive-within-archive scenarios
-
-### 2. Behavioral Detection Over Indicators
-
-Instead of:
-```
-process.name == "powershell.exe" AND cmdline contains "DownloadFile"
-```
-
-Use behavioral patterns:
-```
-(process creates network connection) AND (file written to disk) AND (execution context matches criteria)
-```
-
-### 3. Regular Rule Maintenance
-
-- **Quarterly review** of API documentation for changes
-- **Version compatibility testing** when new OS/software releases
-- **Threat intelligence integration** for newly observed techniques
-- **Red team collaboration** to identify omissions
-
-### 4. Testing Framework
-
-**Test cases should include:**
-- ✅ All documented alternative APIs
-- ✅ Multiple OS/software versions
-- ✅ Various file system locations
-- ✅ Different file type variations
-- ✅ Edge cases (reflection, indirect calls)
-
 ## Related Bug Categories
 
 ADE2 often appears alongside:

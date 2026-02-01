@@ -105,20 +105,6 @@ Concrete examples from production rulesets:
 - **[Bug Likelihood Test](docs/guides/bug-likelihood-test.md)** - Quick pre-analysis checklist
 - **[Quick Start Guide](docs/getting-started/quick-start.md)** - Step-by-step application process
 
-## Real-World Impact
-
-The ADE Framework has identified bugs in **production detection rules** across multiple platforms:
-
-| Platform | Status | Bugs Found |
-|:---------|:-------|:-----------|
-| **Sigma** (Windows PowerShell, AWS, Linux) | ❌ Affected | Multiple ADE1, ADE2, ADE3 bugs |
-| **Microsoft Sentinel** (AWS, Linux, Azure) | ❌ Affected | ADE2, ADE4 bugs |
-| **Elastic Security** (Windows, Linux, Kubernetes) | ❌ Affected | ADE2, ADE3, ADE4 bugs |
-
-Legend: ❌ = Bugs found | ✅ = No bugs found | 🟡 = Assessment pending
-
-**[See detailed examples →](examples/)**
-
 ## How ADE Complements Existing Frameworks
 
 ADE integrates with and enhances existing detection engineering practices:
@@ -222,9 +208,7 @@ We welcome contributions! Areas of active development include:
 
 - 🔨 **Static Analysis Tooling** - Automated bug detection for CI/CD
 - 📚 **Expanded Bug Repository** - Community-driven collection
-- 🎓 **Training Materials** - Workshops and certification
 - 🌐 **Dedicated Website** - Interactive taxonomy browser
-- 🔗 **API Integration** - Programmatic access to taxonomy
 
 ## License
 
@@ -241,20 +225,6 @@ Users are solely responsible for ensuring that their use complies with all appli
 **Responsible Disclosure:** Examples are provided with responsible disclosure considerations. Detection rules and monitoring content are generally out of scope for vendor vulnerability disclosure and bug bounty programs.
 
 **No Warranty:** This framework is provided "as is," without warranty of any kind, express or implied.
-
-## Citation
-
-If you use the ADE Framework in your research or professional work, please cite:
-
-```bibtex
-@misc{ade-framework,
-  author = {Bielski, Nikolas and Koifman, Daniel},
-  title = {Adversarial Detection Engineering (ADE) Framework},
-  year = {2024-2026},
-  publisher = {GitHub},
-  url = {https://github.com/NikolasBielski/Adversarial-Detection-Engineering-Framework}
-}
-```
 
 ## Contact
 

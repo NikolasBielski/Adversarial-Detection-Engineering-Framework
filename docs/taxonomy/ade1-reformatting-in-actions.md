@@ -62,33 +62,6 @@ This has been widely exploited by threat actors for years and still appears in m
 - URL paths
 - Environment variables
 
-## Mitigation Strategies
-
-1. **Reduce reliance on string matching**
-   - Use behavioral indicators instead
-   - Focus on immutable identifiers (hashes, signatures, PIDs)
-
-2. **Implement multi-layered detection**
-   - Don't rely on a single string match
-   - Combine with process ancestry, file metadata, network indicators
-
-3. **Use broader patterns**
-   - Regular expressions that account for obfuscation
-   - Wildcards and fuzzy matching
-   - Consider case-insensitive matching
-
-4. **Leverage immutable fields**
-   - Code signatures
-   - File hashes
-   - PE metadata
-   - Digital certificates
-
-5. **Test with obfuscation techniques**
-   - String concatenation
-   - Base64 encoding
-   - Variable substitution
-   - Character escaping
-
 ## Related Bug Categories
 
 ADE1-01 often appears alongside:

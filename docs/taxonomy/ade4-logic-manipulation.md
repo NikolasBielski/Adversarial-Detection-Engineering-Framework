@@ -76,8 +76,18 @@ condition: suspicious_activity AND not (field contains "safe_string")
 
 ### Real-World Detection Logic Bugs
 
+**ADE4-01 - Gate Inversion:**
+1. **[PowerShell Audio Capture - Sentinel String Bypass](../../examples/ade4/powershell-audio-capture-gate-inversion.md)**
+   - Add sentinel strings to bypass negation filter
+   - Platform: Windows PowerShell Script Block Logging (Elastic Security)
+
+2. **[Windows BITS - De Morgan's Laws Gate Inversion](../../examples/ade4/bits-gate-inversion.md)**
+   - Filename length >30 inverts entire negation chain
+   - Platform: Windows (Elastic Endgame EDR)
+   - **Note:** Same rule also demonstrates ADE2-04 and ADE3-02 bugs
+
 **ADE4-03 - Incorrect Expression:**
-1. **[Suspicious Shell Script - curl AND wget](../../examples/ade4/shell-script-incorrect-expression.md)**
+3. **[Suspicious Shell Script - curl AND wget](../../examples/ade4/shell-script-incorrect-expression.md)**
    - Requires both `curl` AND `wget` in same command line
    - Real attacks use one OR the other
    - Platform: Linux Syslog (Microsoft Sentinel)
@@ -197,96 +207,6 @@ logic: user.previous != "root" and user.current == "root"
 - Defense evasion
 - Credential access
 - Collection/Exfiltration
-
-## Mitigation Strategies
-
-### For ADE4-01 (Gate Inversion)
-
-**1. Simplify with De Morgan's Laws:**
-
-**Before:**
-```yaml
-selection and not filter1 and not filter2 and not filter3
-```
-
-**After:**
-```yaml
-selection and not (filter1 or filter2 or filter3)
-```
-
-**2. Avoid negations on attacker-controlled fields:**
-
-**Bad:**
-```yaml
-not (script_content contains "tool_signature")
-```
-
-**Better:**
-```yaml
-script_content matches suspicious_pattern AND
-not (signature_verified == true)  # Immutable system field
-```
-
-**3. Use allowlists instead of denylists:**
-
-**Bad:**
-```yaml
-not (field in blacklist)  # Attacker can avoid blacklist
-```
-
-**Better:**
-```yaml
-field not in whitelist  # Attacker must match exact whitelist
-```
-
-### For ADE4-02 (Conjunction Inversion)
-
-**1. Avoid conjunctions on mutable data:**
-
-**Bad:**
-```yaml
-suspicious_action AND not (field contains "safe")
-```
-
-**Better:**
-```yaml
-suspicious_action AND (immutable_indicator == malicious)
-```
-
-**2. Use separate rules for exceptions:**
-```yaml
-# Rule 1: Detect all suspicious activity
-rule: detect_suspicious
-
-# Rule 2: Exception handling (separate workflow)
-rule: exception_for_known_tools
-```
-
-### For ADE4-03 (Incorrect Expression)
-
-**1. Test with real-world data:**
-```yaml
-# Before deploying:
-Test case 1: curl download → Should trigger
-Test case 2: wget download → Should trigger
-Test case 3: Both together → Should trigger (but rare)
-```
-
-**2. Use OR for alternatives:**
-```yaml
-# Instead of: field has "A" and field has "B"
-Use: field has "A" or field has "B"
-Or: field has_any ("A", "B")
-```
-
-**3. Never negate privileged accounts in non-privesc rules:**
-```yaml
-# Bad (for initial access/persistence rules)
-activity and not (user in ("root", "SYSTEM"))
-
-# Good (only for privilege escalation)
-previous_user != "root" and current_user == "root"
-```
 
 ## Testing Your Rules
 
