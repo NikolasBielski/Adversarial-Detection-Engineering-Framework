@@ -142,4 +142,6 @@ The authors and collaborators strongly discourage the use of this framework for 
 - [ADE1 Reformatting in Actions](ADE1_Reformatting_in_Actions.md)
 - [ADE2 Omit Alternatives](ADE2_Omit_Alternatives.md)
 - [ADE3 Context Development](ADE3_Context_Development.md)
+- [ADE4 Logic Manipulation](ADE4_Logic_Manipulation.md)
+- [Bug Likelihood Test](Bug_Likelihood_Test.md)
 - [LICENCE](LICENSE)
