@@ -87,8 +87,39 @@ Rather than changing the primary malicious action, the attacker shapes the **sur
    - Clone `/usr/bin/wget` → Use cloned binary
    - Platform: Linux (Sysmon for Linux)
 
+2. **[Cat Network Activity - Process Cloning](../../examples/ade3/process-cloning-cat.md)**
+   - Clone `/bin/cat` → Use for TCP/UDP exfiltration via `/dev/tcp`
+   - Platform: Linux (Elastic Endgame)
+
+3. **[AWS CLI Custom Endpoint - Process Cloning](../../examples/ade3/process-cloning-aws-cli.md)**
+   - Clone `/usr/bin/aws` → Use with malicious endpoints
+   - Platform: Linux process events
+
+**ADE3-02 - Aggregation Hijacking:**
+
+4. **[Windows BITS Filename Length Manipulation](../../examples/ade3/bits-filename-manipulation.md)**
+   - Use filename >30 characters to bypass length-based exclusions
+   - Platform: Windows (Elastic Endgame EDR)
+   - **Note:** Same rule also demonstrates ADE2-04 and ADE4-01 bugs
+
+5. **[AWS CLI New Terms Aggregation Hijacking](../../examples/ade3/aws-cli-new-terms-hijacking.md)**
+   - Hijack `host.id` aggregation baseline
+   - Platform: Linux (Elastic Security new_terms rule)
+
+6. **[Remote Access Tool New Terms Hijacking](../../examples/ade3/rat-new-terms-hijacking.md)**
+   - RAT execution aggregated by `host.id` only
+   - Platform: Windows (Elastic Security new_terms rule)
+
+**ADE3-03 - Timing and Scheduling:**
+
+7. **[Outlook COM Collection - Multiple Timing Bugs](../../examples/ade3/outlook-com-timing-bugs.md)**
+   - Contains 4 bugs: ADE3-01, ADE3-02, ADE3-03 (2 timing bugs)
+   - File age bypass (>500 seconds) + sequence maxspan bypass (>60 seconds)
+   - Platform: Windows (Elastic Endgame EDR)
+
 **ADE3-04 - Event Fragmentation:**
-2. **[LSASS Process Reconnaissance - Event Fragmentation](../../examples/ade3/event-fragmentation.md)**
+
+8. **[LSASS Process Reconnaissance - Event Fragmentation](../../examples/ade3/event-fragmentation.md)**
    - Command: `tasklist | findstr lsass`
    - Fragmented across multiple process creation events
    - Platform: Windows Event ID 4688
@@ -102,11 +133,6 @@ Rather than changing the primary malicious action, the attacker shapes the **sur
 Image|endswith: '/wget'
 process.name: "powershell.exe"
 ```
-
-**Without:**
-- File hash validation
-- Code signature checks
-- Binary path immutability
 
 ### ADE3-02 Patterns
 
@@ -159,96 +185,6 @@ CommandLine|contains|all:
 - Shell operators: `|`, `&`, `&&`, `||`
 - Piped commands
 - Chained execution
-
-## Mitigation Strategies
-
-### For ADE3-01 (Process Cloning)
-
-**1. Use immutable identifiers:**
-```yaml
-# Instead of process.name
-file.hash.sha256: "abc123..."
-process.code_signature.subject_name: "Microsoft Corporation"
-```
-
-**2. Combine with behavioral detection:**
-```yaml
-# Process + Network + File behavior
-(process creates network connection) AND
-(file written to sensitive location) AND
-(execution context abnormal)
-```
-
-**3. Monitor binary cloning:**
-```yaml
-# Detect cp/copy operations on system binaries
-event.action: "file_create" AND
-file.path: "/usr/bin/*" AND
-process.name: "cp"
-```
-
-### For ADE3-02 (Aggregation Hijacking)
-
-**1. Use granular entity keys:**
-```yaml
-# Instead of just host.id
-new_terms.fields: ["host.id", "user.name", "process.args"]
-```
-
-**2. Implement non-manipulable thresholds:**
-```yaml
-# Use ratios instead of counts
-(failed_logins / total_logins) > 0.8
-```
-
-**3. Combine with absolute indicators:**
-```yaml
-# Even if below threshold, flag high-risk patterns
-(count < 10) AND (process.name in high_risk_list)
-```
-
-### For ADE3-03 (Timing and Scheduling)
-
-**1. Use longer time windows:**
-```yaml
-# Instead of maxspan=1m
-maxspan=10m  # Harder to evade
-```
-
-**2. Remove time constraints when possible:**
-```yaml
-# Focus on outcome, not timing
-any([event1, event2, event3]) within session
-```
-
-**3. Monitor timing anomalies:**
-```yaml
-# Detect suspiciously precise timing
-event_interval == exactly 601 seconds  # Just outside 10min window
-```
-
-### For ADE3-04 (Event Fragmentation)
-
-**1. Use sequence rules:**
-```yaml
-sequence by host.id with maxspan=5s
-  [process where process.name == "tasklist.exe"]
-  [process where process.name == "findstr.exe" and
-                  process.args contains "lsass"]
-```
-
-**2. Detect individual components:**
-```yaml
-# Don't require all in one event
-tasklist.exe OR (findstr.exe AND args contains "lsass")
-```
-
-**3. Focus on parent-child relationships:**
-```yaml
-sequence
-  [process where process.name == "cmd.exe"]
-  [process where process.parent.name == "cmd.exe"]
-```
 
 ## Why Context Development Is Powerful
 
