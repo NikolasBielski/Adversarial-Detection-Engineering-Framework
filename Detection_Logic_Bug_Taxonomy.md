@@ -131,8 +131,8 @@ Logic Manipulation occurs when an attacker analyzes detection logic as Boolean c
 To explore taxonomy categories further and see examples, visit the relevant bug category page below.
 
 **Contents**
--- [README.md](README.md)
-- [Detection  Logic Bug Theory](Detection_Logic_Bug_Theory.md)
+- [README.md](README.md)
+- [Detection Logic Bug Theory](Detection_Logic_Bug_Theory.md)
 - **Detection Logic Bug Taxonomy (Current Page)**
 - [ADE1 Reformatting in Actions](ADE1_Reformatting_in_Actions.md)
 - [ADE2 Omit Alternatives](ADE2_Omit_Alternatives.md)

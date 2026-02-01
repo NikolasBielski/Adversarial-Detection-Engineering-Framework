@@ -213,14 +213,14 @@ However, the may be some cases where `Web.Client` can be reformatted or alternat
 
 ### Continue to [Detection Logic Bug Taxonomy](Detection_Logic_Bug_Taxonomy.md)
 
-There are multiple types of detection logic** bugs, each with their own examples and bypasses. View the Detection Logic Bug Taxonomy for definitions and examples of each.
+There are multiple types of **detection logic** bugs, each with their own examples and bypasses. View the Detection Logic Bug Taxonomy for definitions and examples of each.
 
 ---
 
 **Contents**
--- [README.md](README.md)
-- **Detection  Logic Bug Theory (Current Page)**
-- [Detection  Logic Bug Taxonomy](Detection_Logic_Bug_Taxonomy.md)
+- [README.md](README.md)
+- **Detection Logic Bug Theory (Current Page)**
+- [Detection Logic Bug Taxonomy](Detection_Logic_Bug_Taxonomy.md)
 - [ADE1 Reformatting in Actions](ADE1_Reformatting_in_Actions.md)
 - [ADE2 Omit Alternatives](ADE2_Omit_Alternatives.md)
 - [ADE3 Context Development](ADE3_Context_Development.md)

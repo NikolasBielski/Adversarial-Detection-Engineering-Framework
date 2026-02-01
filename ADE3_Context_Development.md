@@ -192,7 +192,7 @@ It also occurs when the rule aggregates the logs into a UEBA entity such as `sou
 
 #### ADE3-02, Example 1:  [Ingress Transfer via Windows BITS](https://github.com/elastic/detection-rules/blob/main/rules/windows/command_and_control_ingress_transfer_bits.toml)
 
-Recall that this example was given in [ADE2-03 Omit Alternatives - File Type](taxonomy/page_2_omit_alternative_methods.md) due to a bug in file type omissions. This actually holds another detection logic bug.
+Recall that this example was given in [ADE2-04 Omit Alternatives - File Type](ADE2_Omit_Alternatives.md) due to a bug in file type omissions. This actually holds another detection logic bug.
 
 This is a detection rule in Elastic Endgame EDR, of query type Elastic Query Language (EQL). The query section is below.
 ```SQL
@@ -274,7 +274,7 @@ This would be an example of **ADE3-02 Context Development - Aggregation Hijackin
 
 A host that doesn't have the binary pre-existing requires an attacker to aim to use ADE3-01 Context Development - Process Cloning to clone/copy wget or curl, to bypass rules relating to wget/curl to download files and also unzip them into the compromised account's home directory (no need for root). Then, after `chmod `ing the user's owned binary, it can be used to generate seemingly legitimate aws usage by using a bogus endpoint such as `https://configsnapshot-s3-endpoint[.]<TARGETS_LEGIT_DOMAIN>[.]com` (or even `8.8.8.8`, no need for it to work) in order to mimick a legitimate endpoint in the hit. This would require generating a hit with a bogus endpoint and hoping for the SOC to incorrectly triage it as a False Positive (which is possible seeing no other alerts and seeing the customer's legitimate domain being visited by an internal host), then waiting the outcome of the triage.
 
-This would be an example of *Behavioral Steering* abuse, mentioned in [Detection Logic Bug Theory](theory_1_detection_logic_bug_theory.md) Attacker adapts their own activity by stacking multiple detection rule bugs during the a kill chain.
+This would be an example of *Behavioral Steering* abuse, mentioned in [Detection Logic Bug Theory](Detection_Logic_Bug_Theory.md) Attacker adapts their own activity by stacking multiple detection rule bugs during the a kill chain.
 
 
 **But, this is still not definitive and purely circumstantial on the context present in the compromised host.**
@@ -494,11 +494,10 @@ Within the example above, three separate process creation events are logged, wit
 ---
 
 **Contents**
-
 - [README.md](README.md)
 - [Detection Logic Bug Theory](Detection_Logic_Bug_Theory.md)
 - [Detection Logic Bug Taxonomy](Detection_Logic_Bug_Taxonomy.md)
-- [ADE1 Reformatting in Actions](ADE1_Reformatting_in_Actions.md)**
+- [ADE1 Reformatting in Actions](ADE1_Reformatting_in_Actions.md)
 - [ADE2 Omit Alternatives](ADE2_Omit_Alternatives.md)
 - **ADE3 Context Development (Current Page)**
 - [ADE4 Logic Manipulation](ADE4_Logic_Manipulation.md)

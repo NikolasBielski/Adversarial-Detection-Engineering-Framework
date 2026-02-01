@@ -221,11 +221,10 @@ The list goes on, and so does the number of non priviledge escalation detection 
 
 
 **Contents**
-
 - [README.md](README.md)
 - [Detection Logic Bug Theory](Detection_Logic_Bug_Theory.md)
 - [Detection Logic Bug Taxonomy](Detection_Logic_Bug_Taxonomy.md)
-- [ADE1 Reformatting in Actions](ADE1_Reformatting_in_Actions.md)**
+- [ADE1 Reformatting in Actions](ADE1_Reformatting_in_Actions.md)
 - [ADE2 Omit Alternatives](ADE2_Omit_Alternatives.md)
 - [ADE3 Context Development](ADE3_Context_Development.md)
 - **ADE4 Logic Manipulation (Current Page)**
