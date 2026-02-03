@@ -42,17 +42,11 @@ tasklist | findstr "lsass"
 
 **Event 1:**
 ```
-Image: C:\Windows\System32\cmd.exe
-CommandLine: cmd.exe /c tasklist
-```
-
-**Event 2:**
-```
 Image: C:\Windows\System32\tasklist.exe
 CommandLine: tasklist
 ```
 
-**Event 3:**
+**Event 2:**
 ```
 Image: C:\Windows\System32\findstr.exe
 CommandLine: findstr "lsass"
@@ -63,16 +57,15 @@ CommandLine: findstr "lsass"
 **Rule requires:**
 ```yaml
 CommandLine|contains|all:
-    - 'tasklist'    ✓ (Event 2)
-    - 'findstr'     ✓ (Event 3)
-    - 'lsass'       ✓ (Event 3)
+    - 'tasklist'    ✓ (Event 1)
+    - 'findstr'     ✓ (Event 2)
+    - 'lsass'       ✓ (Event 2)
 ```
 
 **Problem:** No single event contains all three substrings simultaneously
 
-- Event 1: `cmd.exe /c tasklist` → Contains "tasklist" only
-- Event 2: `tasklist` → Contains "tasklist" only
-- Event 3: `findstr "lsass"` → Contains "findstr" and "lsass"
+- Event 1: `tasklist` → Contains "tasklist" only
+- Event 2: `findstr "lsass"` → Contains "findstr" and "lsass" only
 
 **Result:** `CommandLine|contains|all` = **False** for all events → **False Negative**
 
@@ -82,15 +75,13 @@ CommandLine|contains|all:
 
 When you execute:
 ```cmd
-cmd.exe /c "tasklist | findstr lsass"
+tasklist | findstr lsass
 ```
 
 Windows shell:
-1. Creates `cmd.exe` process
-2. Parses pipe operator `|`
-3. Spawns `tasklist.exe` (writes to stdout)
-4. Spawns `findstr.exe` (reads from stdin, filters)
-5. Each spawn = separate Event ID 4688 (process creation)
+1. Spawns `tasklist.exe` (writes to stdout)
+2. Spawns `findstr.exe` (reads from stdin)
+3. Each spawn = separate Event ID 4688 (process creation)
 
 ### Shell Operators That Fragment
 
@@ -114,8 +105,8 @@ command1 || command2
 
 ## Related Research
 
-- [Detection Pitfalls by Jared Atkinson](https://detect.fyi/detection-pitfalls-you-might-be-sleeping-on-52b5a3d9a0c8)
-- [Unintentional Evasion: Command Line Logging Gaps](https://detect.fyi/unintentional-evasion-investigating-how-cmd-fragmentation-hampers-detection-response-e5d7b465758e)
+- [Detection Pitfalls by Daniel Koifman](https://detect.fyi/detection-pitfalls-you-might-be-sleeping-on-52b5a3d9a0c8)
+- [Unintentional Evasion: Command Line Logging Gaps by Kostas](https://detect.fyi/unintentional-evasion-investigating-how-cmd-fragmentation-hampers-detection-response-e5d7b465758e)
 
 ## Impact
 
@@ -138,13 +129,6 @@ CommandLine|contains|all:
 **KQL:**
 ```kql
 CommandLine has_all ("string1", "string2", "string3")
-```
-
-**EQL:**
-```eql
-process where process.command_line like~ "*string1*" and
-               process.command_line like~ "*string2*" and
-               process.command_line like~ "*string3*"
 ```
 
 ---
