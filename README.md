@@ -1,5 +1,9 @@
 # Adversarial Detection Engineering (ADE) Framework
 
+<p align="center">
+  <img src="https://i.postimg.cc/vB95SNkr/unnamed.jpg" alt="Logo" width="300" style="display: block; margin: 0 auto;">
+</p>
+
 [![Author](https://img.shields.io/badge/Author-Nikolas_Bielski-blue)](https://github.com/NikolasBielski)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/NikolasBielski/Adversarial-Detection-Engineering-Framework)](https://github.com/NikolasBielski/Adversarial-Detection-Engineering-Framework/commits/main)
 [![GitHub License](https://img.shields.io/github/license/NikolasBielski/Adversarial-Detection-Engineering-Framework)](https://github.com/NikolasBielski/Adversarial-Detection-Engineering-Framework/blob/main/LICENSE)
