@@ -77,10 +77,3 @@ ADE1-01 often appears alongside:
 - Would case changes or whitespace insertion break detection?
 
 If you answered "yes" to any of these, your rule likely has an ADE1-01 vulnerability.
-
----
-
-**Navigation:**
-- [← Back to Taxonomy Overview](overview.md)
-- [Theory: Detection Logic Bugs](../theory/detection-logic-bugs.md)
-- [Next: ADE2 - Omit Alternatives →](ade2-omit-alternatives.md)
