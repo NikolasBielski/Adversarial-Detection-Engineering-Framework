@@ -26,6 +26,11 @@ This adversarial line of reasoning mirrors how threat actors abuse weaknesses in
 - ✅ **Equip red teams and detection engineers** with actionable detection logic bug intelligence
 - ✅ **Get ahead of False Negatives** before threat actors discover and exploit them
 
+## ADE link to Detection Logic Exposures (DLE)
+
+- ADE supplies a canonical taxonomy and bug classes for detection logic bugs.
+- [DLE](https://github.com/NikolasBielski/Detection-Logic-Exposures) provides a recognized list of publically disclosed bypasses with ADE mappings. 
+
 ## Quick Start
 
 **New to ADE?** Start here:
