@@ -87,7 +87,8 @@ condition: suspicious_activity AND not (field contains "safe_string")
    - **Note:** Same rule also demonstrates ADE2-04 and ADE3-02 bugs
 
 **ADE4-03 - Incorrect Expression:**
-3. **[Suspicious Shell Script - curl AND wget](../../examples/ade4/shell-script-incorrect-expression.md)**
+
+1. **[Suspicious Shell Script - curl AND wget](../../examples/ade4/shell-script-incorrect-expression.md)**
    - Requires both `curl` AND `wget` in same command line
    - Real attacks use one OR the other
    - Platform: Linux Syslog (Microsoft Sentinel)
@@ -247,11 +248,3 @@ ADE4 often appears alongside:
 3. **Test with real attack samples** (not just theoretical)
 4. **Apply De Morgan's Laws** to simplify negations
 5. **Validate privileged account assumptions** match rule scope
-
----
-
-**Navigation:**
-- [← ADE3: Context Development](ade3-context-development.md)
-- [Back to Taxonomy Overview](overview.md)
-- [Theory: Detection Logic Bugs](../theory/detection-logic-bugs.md)
-- [Bug Likelihood Test](../guides/bug-likelihood-test.md)
