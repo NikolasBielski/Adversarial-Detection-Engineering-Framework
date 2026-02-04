@@ -24,7 +24,7 @@ Other solutions and their rulesets have not yet been reviewed as part of creatin
 
 ## ADE Detection Logic Bug Taxonomy
 
-The full taxonomy consists of 4 categories, and 11 sub-categories
+The full taxonomy consists of 4 categories, and 12 sub-categories
 - Each category is given a label, such as ADE1, ADE2, ...., ADE4.
 - Subcategories are labels with their subcategory number. E.g ADE1-02, ADE3-03 This is for mappings to rules.
 
@@ -56,8 +56,6 @@ Reformatting in Actions occurs when a detection rule relies on **string match co
 **Subcategory:**
 - **[ADE1-01 Substring Manipulation](ade1-reformatting-in-actions.md#ade1-01-substring-manipulation)**: Attacker alters or obfuscates input data to bypass substring matches
 
-**[→ Full ADE1 Documentation](ade1-reformatting-in-actions.md)**
-
 ---
 
 ### [ADE2 - Omit Alternatives](ade2-omit-alternatives.md)
@@ -69,8 +67,6 @@ An alternative API/function, version, location, or file type is available within
 - **[ADE2-02 Versioning](ade2-omit-alternatives.md#ade2-02-omit-alternatives---versioning)**: Software/OS version differences not accounted for
 - **[ADE2-03 Locations](ade2-omit-alternatives.md#ade2-03-omit-alternatives---locations)**: Alternative file paths or locations ignored
 - **[ADE2-04 File Types](ade2-omit-alternatives.md#ade2-04-omit-alternatives---file-type)**: Alternative file extensions/formats omitted
-
-**[→ Full ADE2 Documentation](ade2-omit-alternatives.md)**
 
 ---
 
@@ -84,8 +80,6 @@ Attacker takes additional steps to **manipulate or poison contextual data** used
 - **[ADE3-03 Timing and Scheduling](ade3-context-development.md#ade3-03-context-development---timing-and-scheduling)**: Space actions to avoid time-based constraints
 - **[ADE3-04 Event Fragmentation](ade3-context-development.md#ade3-04-context-development---event-fragmentation)**: Shell operators split commands across multiple events
 
-**[→ Full ADE3 Documentation](ade3-context-development.md)**
-
 ---
 
 ### [ADE4 - Logic Manipulation](ade4-logic-manipulation.md)
@@ -96,8 +90,6 @@ Attacker analyzes detection logic as Boolean conditions and manipulates inputs o
 - **[ADE4-01 Gate Inversion](ade4-logic-manipulation.md#ade4-01-logic-manipulation---gate-inversion)**: Exploit NOT clauses and De Morgan's Law violations
 - **[ADE4-02 Conjunction Inversion](ade4-logic-manipulation.md#ade4-02-logic-manipulation---conjunction-inversion)**: Flip AND conditions with poisoned data
 - **[ADE4-03 Incorrect Expression](ade4-logic-manipulation.md#ade4-03-logic-manipulation---incorrect-expression)**: Logic construction errors (AND vs OR)
-
-**[→ Full ADE4 Documentation](ade4-logic-manipulation.md)**
 
 ---
 
@@ -122,17 +114,3 @@ Attacker analyzes detection logic as Boolean conditions and manipulates inputs o
 - Thresholds/counts → ADE3-02
 - Sequence rules → ADE3-03
 - Multiple `NOT` → ADE4-01
-
----
-
-**Navigation:**
-- [← Back to Getting Started](../getting-started/introduction.md)
-- [Theory: Detection Logic Bugs](../theory/detection-logic-bugs.md)
-- [Bug Likelihood Test](../guides/bug-likelihood-test.md)
-- [Examples](../../examples/)
-
-**Category Details:**
-- [ADE1 - Reformatting in Actions](ade1-reformatting-in-actions.md)
-- [ADE2 - Omit Alternatives](ade2-omit-alternatives.md)
-- [ADE3 - Context Development](ade3-context-development.md)
-- [ADE4 - Logic Manipulation](ade4-logic-manipulation.md)
