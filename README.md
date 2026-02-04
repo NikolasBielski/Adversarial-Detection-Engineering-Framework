@@ -36,7 +36,7 @@ The purpose of ADE is not to force design to perfection, although that is an ide
 ## ADE link to Detection Logic Exposures (DLE)
 
 - ADE supplies a canonical taxonomy and bug classes for detection logic bugs.
-- [DLE](https://github.com/NikolasBielski/Detection-Logic-Exposures) provides a recognized list of publically disclosed bypasses with ADE mappings. 
+- [DLE](https://github.com/NikolasBielski/Adversarial-Detection-Engineering-Framework/tree/main/dle) provides a recognized list of publically disclosed bypasses with ADE mappings. 
 
 ## Quick Start
 
