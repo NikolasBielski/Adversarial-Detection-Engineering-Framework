@@ -26,6 +26,13 @@ This adversarial line of reasoning mirrors how threat actors abuse weaknesses in
 - ✅ **Equip red teams and detection engineers** with actionable detection logic bug intelligence
 - ✅ **Get ahead of False Negatives** before threat actors discover and exploit them
 
+## ADE Purpose
+
+The purpose of ADE is not to force design to perfection, although that is an ideal goal - but to raise awareness and keep limitation, even if intentional, in check:
+- ADE is not about demanding perfect detection rules; it is about making false-negative risk visible.
+- Many rules intentionally contain limitations due to scope, signal quality, or operational constraints, and these may still be mapped to ADE bug types without being “wrong.”
+- ADE provides a shared way to document, accept, mitigate, or compensate for those risks across a ruleset, rather than judging individual rules in isolation.
+
 ## Quick Start
 
 **New to ADE?** Start here:
