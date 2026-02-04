@@ -8,7 +8,7 @@
 
 ## What Is ADE?
 
-Adversarial Detection Engineering (ADE) is the discipline of reasoning about **False Negatives in detection rules** on a per-rule basis. The ADE Framework provides a modern open-source formalization of **Detection Logic Bugs** - mismatches between what a detection rule *intends* to detect and what it *actually* detects.
+Adversarial Detection Engineering (ADE) is the discipline of reasoning about **False Negatives in detection rules**. The ADE Framework provides a modern open-source formalization of **Detection Logic Bugs** - mismatches between what a detection rule *intends* to detect and what it *actually* detects.
 
 ### The ADE Advantage
 
@@ -16,19 +16,19 @@ Instead of waiting for real-world False Negatives, detection engineers can proac
 
 > *"What variations would cause this rule's detection logic to miss what it was intended to catch?"*
 
-This adversarial line of reasoning mirrors how threat actors abuse weaknesses in detection logic.
+This adversarial line of reasoning mirrors how threat actors can abuse weaknesses in detection logic.
 
 ## Key Features
 
 - ✅ **Identify reproducible detection logic bugs** and map them to formal ADE categories
 - ✅ **Embed an attacker's mental model** into how detection logic is designed and reviewed
 - ✅ **Expose structural weaknesses** in rules used for hunts or production MDR tooling (SIEM, XDR, EDR)
-- ✅ **Equip red teams and detection engineers** with actionable detection logic bug intelligence
+- ✅ **Equip security teams** with actionable detection logic bug intelligence
 - ✅ **Get ahead of False Negatives** before threat actors discover and exploit them
 
 ## ADE Purpose
 
-The purpose of ADE is not to force design to perfection, although that is an ideal goal - but to raise awareness and keep limitation, even if intentional:
+The purpose of ADE is not to force perfection in design, although that is an ideal goal - but to raise awareness and track limitations, even if intentional:
 - ADE is not about demanding perfect detection rules; it is about making the risk of false-negatives visible.
 - Many rules intentionally contain limitations due to scope, signal quality, or operational constraints, and these may still be mapped to ADE bug types without being “wrong.”
 - ADE provides a shared way to document, accept, mitigate, or compensate for those risks across a ruleset, rather than judging individual rules in isolation.
@@ -51,7 +51,7 @@ The purpose of ADE is not to force design to perfection, although that is an ide
 
 - [Detection Logic Bug Theory](docs/theory/detection-logic-bugs.md) - Formal foundations
 - [Taxonomy Overview](docs/taxonomy/overview.md) - All bug categories
-- [Examples](examples/) - Real-world bugs and bypasses
+- [Examples](examples/) - Real-world examples
 
 ## ADE Detection Logic Bug Taxonomy
 
@@ -109,7 +109,7 @@ Concrete examples from production rulesets:
 **Example Categories:**
 - [ADE1 Examples](examples/ade1/) - String manipulation bypasses
 - [ADE2 Examples](examples/ade2/) - Omitted alternatives
-- [ADE3 Examples](examples/ade3/) - Context development attacks
+- [ADE3 Examples](examples/ade3/) - Context development
 - [ADE4 Examples](examples/ade4/) - Logic manipulation
 
 ### 4. Practical Tools
@@ -159,34 +159,6 @@ We welcome contributions! Areas of active development include:
 
 **[See CONTRIBUTING.md for details →](CONTRIBUTING.md)**
 
-## Documentation
-
-### Getting Started
-
-- [Introduction](docs/getting-started/introduction.md) - What is ADE?
-- [Core Concepts](docs/getting-started/core-concepts.md) - Essential terminology
-- [Quick Start](docs/getting-started/quick-start.md) - Apply ADE to a detection rule
-
-### Reference
-
-- [Theory](docs/theory/detection-logic-bugs.md) - Formal foundations
-- [Taxonomy](docs/taxonomy/overview.md) - Complete bug classification
-- [Bug Likelihood Test](docs/guides/bug-likelihood-test.md) - Quick assessment tool
-
-### Bug Categories
-
-- [ADE1 - Reformatting in Actions](docs/taxonomy/ade1-reformatting-in-actions.md)
-- [ADE2 - Omit Alternatives](docs/taxonomy/ade2-omit-alternatives.md)
-- [ADE3 - Context Development](docs/taxonomy/ade3-context-development.md)
-- [ADE4 - Logic Manipulation](docs/taxonomy/ade4-logic-manipulation.md)
-
-### Examples
-
-- [ADE1 Examples](examples/ade1/) - String manipulation bypasses
-- [ADE2 Examples](examples/ade2/) - Omitted alternatives
-- [ADE3 Examples](examples/ade3/) - Context development
-- [ADE4 Examples](examples/ade4/) - Logic manipulation
-
 ## Use Cases
 
 ### For Detection Engineers
@@ -220,7 +192,6 @@ We welcome contributions! Areas of active development include:
 
 - 🔨 **Static Analysis Tooling** - Automated bug detection for CI/CD
 - 📚 **Expanded Bug Repository** - Community-driven collection
-- 🌐 **Dedicated Website** - Interactive taxonomy browser
 
 ## License
 
@@ -243,6 +214,3 @@ Users are solely responsible for ensuring that their use complies with all appli
 - GitHub Issues: [Report bugs or request features](https://github.com/NikolasBielski/Adversarial-Detection-Engineering-Framework/issues)
 - LinkedIn: [Nikolas Bielski](https://www.linkedin.com/in/nikbielski/) | [Daniel Koifman](https://www.linkedin.com/in/koifman-daniel/)
 
----
-
-**[Get Started Now →](docs/getting-started/introduction.md)**
