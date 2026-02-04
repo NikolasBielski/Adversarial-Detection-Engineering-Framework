@@ -1,0 +1,37 @@
+id: DLE-2026-00009
+related_ade:
+  - ADE3-01  # Context Development – Process Cloning
+  - ADE3-02  # Context Development – Aggregation Hijacking
+  - ADE3-03  # Context Development – Timing and Scheduling
+schema_version: 1.0
+bypass_description: >
+  The detection relies on a tightly coupled EQL sequence that assumes specific
+  parent process names, short file age, immediate process-to-process timing,
+  and the creation of a new Outlook process. An attacker can bypass the rule by
+  cloning the parent process binary, waiting out file age checks, delaying COM
+  interaction beyond the sequence maxspan, or reusing an existing Outlook COM
+  instance so no new OUTLOOK.EXE process is created.
+affected_detection_logic:
+  name: Collection Email Outlook Mailbox Via COM
+  platform: Elastic Security
+  references:
+    - https://github.com/elastic/detection-rules/blob/main/rules/windows/collection_email_outlook_mailbox_via_com.toml
+rule_version: unknown
+credit: ADE Maintainers
+assumption_violated: >
+  The detection assumes that malicious Outlook COM usage will spawn a new
+  OUTLOOK.EXE process within a short, fixed time window, originate from a
+  hardcoded set of parent process names or recently created binaries, and that
+  COM interactions always result in observable process creation events.
+mitre_attack:
+  - T1114
+logsource:
+  product: windows
+  category: process
+complexity: Medium
+notes: >
+  This rule contains multiple independent single points of failure. Outlook is a
+  single-instance COM server, allowing aggregation hijacking by reusing an
+  existing process. The sequence maxspan can be trivially bypassed with sleep
+  delays, and parent process checks are vulnerable to binary cloning. These bugs
+  can be stacked to guarantee false negatives with minimal attacker effort.

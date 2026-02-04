@@ -1,0 +1,33 @@
+id: DLE-2026-00015
+related_ade:
+  - ADE4-01  # Logic Manipulation – Gate Inversion
+schema_version: 1.0
+bypass_description: >
+  The detection negates the presence of specific sentinel strings in PowerShell
+  script blocks to suppress false positives. An attacker can intentionally insert
+  all three sentinel strings ("sentinelbreakpoints", "Set-PSBreakpoint", 
+  "PowerSploitIndicators") into a malicious script. This causes the negation
+  condition to evaluate as true, flipping the Boolean gate and preventing the
+  alert from triggering, despite the script executing audio capture commands.
+affected_detection_logic:
+  name: PowerShell Suspicious Script with Audio Capture Capabilities
+  platform: Elastic Security
+  references:
+    - https://github.com/elastic/detection-rules/blob/main/rules/windows/collection_posh_audio_capture.toml
+rule_version: unknown
+credit: ADE Maintainers
+assumption_violated: >
+  The detection assumes that negated script block content represents
+  immutable or trustworthy noise that attackers cannot manipulate. It further
+  assumes that attackers cannot intentionally inject all negated terms to flip
+  the rule outcome.
+mitre_attack:
+  - T1059.001
+logsource:
+  product: windows
+  category: process
+complexity: Low
+notes: >
+  This bypass is deterministic and requires no prior host history or aggregation
+  preconditioning. A few lines of benign script adding the sentinel strings are
+  sufficient to invert the Boolean gate and evade detection.

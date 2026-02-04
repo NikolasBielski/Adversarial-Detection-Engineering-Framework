@@ -1,0 +1,33 @@
+id: DLE-2026-00011
+related_ade:
+  - ADE3-01  # Context Development – Process Cloning
+schema_version: 1.0
+bypass_description: >
+  The detection correlates process execution and subsequent network activity by
+  matching on process.name equal to "cat" across both stages of a sequence rule.
+  By cloning or renaming the cat binary and executing it under a different filename,
+  the attacker preserves identical behavior while altering the logged process name,
+  causing both sequence states to fail and the detection to be bypassed.
+affected_detection_logic:
+  name: Network Activity Detected via cat
+  platform: Elastic Security
+  references:
+    - https://www.elastic.co/docs/reference/security/prebuilt-rules/rules/linux/command_and_control_cat_network_activity
+rule_version: unknown
+credit: ADE Maintainers
+assumption_violated: >
+  The detection assumes that process.name is a reliable and immutable identifier
+  for the executed binary and that attackers cannot influence it by cloning or
+  renaming utilities prior to execution.
+mitre_attack:
+  - T1105
+logsource:
+  product: linux
+  category: process
+complexity: Low
+notes: >
+  This bypass is deterministic and requires no elevated privileges, as standard
+  users can copy binaries to writable directories. Because both states of the
+  sequence depend on string-based process identification, a single rename causes
+  the entire sequence to fail. Incorporating executable path, file hash, or code
+  signature checks would reduce exposure.

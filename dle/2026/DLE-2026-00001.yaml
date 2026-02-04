@@ -1,0 +1,32 @@
+id: DLE-2026-00001
+bypass_description: >
+  The detection relies on a static substring match for "Get-NetTCPConnection"
+  within the CommandLine field. By dynamically constructing the cmdlet name
+  using PowerShell string concatenation ("Get-Net" + "TCP" + "Connection"),
+  the command executes normally while avoiding the expected substring, causing
+  the detection to fail.
+related_ade:
+  - ADE1-01  # Reformatting in Actions – Substring Manipulation
+schema_version: 1.0
+affected_detection_logic:
+  name: Use Get-NetTCPConnection
+  platform: Sigma
+  references:
+    - https://github.com/SigmaHQ/sigma/blob/master/rules/windows/powershell/powershell_module/posh_pm_susp_get_nettcpconnection.yml
+    - https://github.com/NikolasBielski/Adversarial-Detection-Engineering-Framework/blob/main/examples/ade1/get-nettcpconnection.md
+rule_version: 2023-10-27
+credit: ADE Maintainers
+assumption_violated: > 
+  The detection assumes that PowerShell cmdlet names appear as literal, 
+  contiguous substrings in process creation CommandLine telemetry.
+logsource:
+    product: windows
+    category: ps_module
+mitre_attack:
+  - T1049
+complexity: Low
+
+notes: >
+  Similar bypasses may be achieved using string formatting, variables, or
+  encoded PowerShell command construction. Consider token-level parsing or
+  PowerShell script block logging as mitigation.

@@ -1,0 +1,36 @@
+id: DLE-2026-00013
+related_ade:
+  - ADE3-02  # Context Development – Aggregation Hijacking
+  - ADE3-01  # Context Development – Process Cloning
+schema_version: 1.0
+bypass_description: >
+  The detection uses a New Terms rule keyed only on host.id to identify first-time
+  execution of commonly abused remote access tools within a 15-day window. If the
+  same RAT has been executed on the host during that period, subsequent executions
+  aggregate into the existing baseline and do not alert. An attacker with sufficient
+  reconnaissance capability can determine prior RAT usage and intentionally reuse
+  the same tool to bypass detection.
+affected_detection_logic:
+  name: First Time Seen Commonly Abused Remote Access Tool Execution
+  platform: Elastic Security
+  references:
+    - https://github.com/elastic/detection-rules/blob/f6e79944f2fd0ad680cb2e68fd249c8b6d722ec8/rules/windows/command_and_control_new_terms_commonly_abused_rat_execution.toml
+rule_version: unknown
+credit: ADE Maintainers
+assumption_violated: >
+  The detection assumes host-level aggregation is sufficiently granular to represent
+  first-time malicious RAT execution and that attackers cannot observe or influence
+  prior RAT activity within the New Terms history window. It further assumes process
+  name matching is a reliable identifier for RAT execution.
+mitre_attack:
+  - T1219
+logsource:
+  product: windows
+  category: process
+complexity: Medium
+notes: >
+  This bypass is context-dependent and requires reconnaissance to confirm RAT usage
+  within the aggregation window. The rule also contains a secondary ADE3-01 weakness
+  due to reliance on process.name.caseless, allowing renamed RAT binaries to evade
+  detection regardless of history. Adding user context, executable hash, or
+  certificate thumbprint to aggregation would reduce susceptibility.

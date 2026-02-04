@@ -1,0 +1,33 @@
+id: DLE-2026-00016
+related_ade:
+  - ADE4-03  # Logic Manipulation – Incorrect Expression
+schema_version: 1.0
+bypass_description: >
+  The detection logic requires the command line to contain both "curl" and "wget"
+  simultaneously. In real-world attack scenarios, adversaries typically use only
+  one download utility per command. As a result, legitimate malicious activity
+  using either curl or wget alone fails to satisfy the Boolean expression and is
+  not detected.
+affected_detection_logic:
+  name: Suspicious Shell Script Detected
+  platform: Microsoft Sentinel
+  references:
+    - https://github.com/Azure/Azure-Sentinel/blob/master/Solutions/Apache%20Log4j%20Vulnerability%20Detection/Hunting%20Queries/Suspicious_ShellScript_Activity.yaml
+rule_version: unknown
+credit: ADE Maintainers
+assumption_violated: >
+  The detection assumes attackers will invoke multiple download utilities within
+  a single command line. It further assumes that requiring the simultaneous
+  presence of curl and wget will still capture common post-compromise download
+  behavior.
+mitre_attack:
+  - T1105
+logsource:
+  product: linux
+  category: process
+complexity: Low
+notes: >
+  This is a design-time logic error rather than an attacker-driven evasion. The
+  rule is effectively non-functional for realistic attack behavior and results
+  in persistent false negatives unless an unlikely command containing both curl
+  and wget is executed.

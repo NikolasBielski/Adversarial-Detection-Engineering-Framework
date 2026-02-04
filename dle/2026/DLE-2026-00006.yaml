@@ -1,0 +1,35 @@
+id: DLE-2026-00006
+related_ade:
+  - ADE3-02  # Context Development – Aggregation Hijacking
+  - ADE3-01  # Context Development – Process Cloning
+schema_version: 1.0
+bypass_description: >
+  The detection uses a new terms aggregation keyed only on host.id to identify
+  first-time use of the AWS CLI with a custom endpoint URL. By identifying prior
+  usage of the same pattern on the host within the aggregation window, or by
+  intentionally generating a benign first occurrence to seed the baseline, an
+  attacker can repeat the behavior without triggering a new alert.
+affected_detection_logic:
+  name: AWS CLI Command with Custom Endpoint URL
+  platform: Elastic Security
+  references:
+    - https://github.com/elastic/detection-rules/blob/main/rules/linux/command_and_control_aws_cli_endpoint_url_used.toml
+rule_version: unknown
+credit: ADE Maintainers
+assumption_violated: >
+  The detection assumes that host-level aggregation is sufficiently granular
+  to uniquely represent first-time malicious behavior, and that attackers
+  cannot observe or influence prior aggregated activity within the history
+  window.
+logsource:
+  product: linux
+  category: process
+mitre_attack:
+  - T1105
+complexity: Medium
+notes: >
+  This bypass is context-dependent and relies on prior aws --endpoint-url usage
+  within the aggregation window or the ability to poison the baseline via false
+  positives. Including additional aggregation fields such as user.name and
+  process arguments would reduce susceptibility. The same rule is also exposed
+  to process cloning due to reliance on process.name.

@@ -1,0 +1,32 @@
+id: DLE-2026-00012
+related_ade:
+  - ADE3-01  # Context Development – Process Cloning
+schema_version: 1.0
+bypass_description: >
+  The detection identifies wget downloads into temporary directories by matching
+  the process image string ending in "/wget". An attacker can clone or rename the
+  wget binary and execute it under a different filename, preserving identical
+  download behavior while altering the logged process name, causing the detection
+  condition to fail and the download to proceed without alerting.
+affected_detection_logic:
+  name: Wget Creating Files in Tmp Directory
+  platform: Sigma
+  references:
+    - https://github.com/SigmaHQ/sigma/blob/master/rules/linux/file_event/file_event_lnx_wget_download_file_in_tmp_dir.yml
+rule_version: unknown
+credit: ADE Maintainers
+assumption_violated: >
+  The detection assumes the process image name is a stable and trustworthy
+  identifier for wget execution and that attackers cannot clone or rename the
+  binary prior to performing the in-scope download activity.
+mitre_attack:
+    - T1105
+logsource:
+  product: linux
+  category: file
+complexity: Low
+notes: >
+  This bypass is trivial for both privileged and unprivileged attackers, as wget
+  binaries can be copied to writable directories without changing functionality.
+  The rule reflects threat-specific intelligence that does not generalize well to
+  adversarial environments where process names are attacker-controlled.

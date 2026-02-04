@@ -1,0 +1,32 @@
+id: DLE-2026-00008
+related_ade:
+  - ADE3-02  # Context Development – Aggregation Hijacking
+  - ADE4-01  # Logic Manipulation – Gate Inversion
+schema_version: 1.0
+bypass_description: >
+  The detection excludes BITS file rename events where the filename length exceeds
+  30 characters to suppress legitimate third-party software noise. An attacker can
+  deliberately use a long filename to match this excluded baseline, causing the
+  negated length condition to evaluate to false and bypass the remaining detection
+  logic entirely.
+affected_detection_logic:
+  name: Ingress Transfer via Windows BITS
+  platform: Elastic Security
+  references:
+    - https://github.com/elastic/detection-rules/blob/main/rules/windows/command_and_control_ingress_transfer_bits.toml
+rule_version: unknown
+credit: ADE Maintainers
+assumption_violated: >
+  The detection assumes malicious BITS transfers will use short filenames and that
+  long filenames are a reliable proxy for benign third-party software behavior.
+  It further assumes attackers cannot intentionally align with this baseline.
+mitre_attack:
+  - T1105
+logsource:
+  product: windows
+  category: file
+complexity: Low
+notes: >
+  This bypass is deterministic and requires no prior context or environmental
+  preconditioning. The same rule is also vulnerable to omitted file types and
+  additional gate inversion paths, allowing multiple independent evasion strategies.

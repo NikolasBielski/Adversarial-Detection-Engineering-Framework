@@ -1,0 +1,37 @@
+id: DLE-2026-00004
+related_ade:
+  - ADE2-01  # Omit Alternatives – API / Function
+  - ADE2-02  # Omit Alternatives – Versioning
+schema_version: 1.0
+bypass_description: >
+  The detection monitors a limited set of RDS-specific CloudTrail event names
+  associated with EC2-Classic DB security groups. By modifying RDS instances
+  using alternative RDS APIs such as ModifyDBInstance, restoring databases from
+  snapshots, or changing network exposure via EC2 VPC security group APIs, an
+  attacker can perform equivalent or more impactful configuration changes
+  without generating the expected event names, causing the detection to fail.
+affected_detection_logic:
+  name: Changes to Internet Facing AWS RDS Database Instances
+  platform: Microsoft Sentinel
+  references:
+    - https://github.com/Azure/Azure-Sentinel/blob/master/Solutions/Amazon%20Web%20Services/Analytic%20Rules/AWS_ChangeToRDSDatabase.yaml
+    - https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_Operations.html
+rule_version: unknown
+credit: ADE Maintainers
+assumption_violated: >
+  The detection assumes that security-relevant RDS configuration changes will
+  be performed using a small, fixed set of RDS DB security group APIs and that
+  these APIs remain consistent across deployment models and service versions.
+logsource:
+  product: aws
+  service: cloudtrail
+mitre_attack:
+  - T1562
+  - T1046
+complexity: Medium
+notes: >
+  The rule reflects EC2-Classic RDS security group behavior and does not account
+  for EC2 VPC-based RDS deployments, alternative RDS modification APIs, snapshot
+  restoration workflows, or related EC2 security group changes. A more robust
+  approach would correlate RDS configuration state changes, EC2 security group
+  modifications, and public accessibility flags across deployment models.

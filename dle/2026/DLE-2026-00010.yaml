@@ -1,0 +1,30 @@
+id: DLE-2026-00010
+related_ade:
+  - ADE3-01  # Context Development – Process Cloning
+schema_version: 1.0
+bypass_description: >
+  The detection matches on process.name equal to "aws" to identify AWS CLI usage
+  with a custom endpoint URL. By cloning or renaming the AWS CLI binary and executing
+  it under a different filename, the attacker preserves identical behavior while
+  altering the logged process name, causing the detection to fail.
+affected_detection_logic:
+  name: AWS CLI Command with Custom Endpoint URL
+  platform: Elastic Security
+  references:
+    - https://github.com/elastic/detection-rules/blob/main/rules/linux/command_and_control_aws_cli_endpoint_url_used.toml
+rule_version: unknown
+credit: ADE Maintainers
+assumption_violated: >
+  The detection assumes that process.name is a stable and trustworthy identifier
+  for the executed binary and that attackers cannot manipulate it by cloning or
+  renaming executables.
+mitre_attack:
+  - T1105
+logsource:
+  product: linux
+  category: process
+complexity: Low
+notes: >
+  This bypass requires no special privileges beyond the ability to execute the AWS
+  CLI. Reliance on string-based process identification enables deterministic evasion.
+  Using executable path, file hash, or code signature would reduce susceptibility.

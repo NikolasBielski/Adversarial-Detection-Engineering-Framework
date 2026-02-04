@@ -1,0 +1,35 @@
+id: DLE-2026-00005
+related_ade:
+  - ADE2-04  # Omit Alternatives – File Type
+  - ADE3-02  # Context Development – Aggregation Hijacking
+  - ADE4-01  # Logic Manipulation – Gate Inversion
+schema_version: 1.0
+bypass_description: >
+  The detection restricts BITS ingress transfer monitoring to a fixed list of
+  executable and archive file extensions and a PE header byte check. By
+  transferring payloads using alternative archive formats, interpreted script
+  types, or macro-enabled documents that do not match the enumerated extensions
+  or PE magic bytes, an attacker can leverage BITS to stage malicious content
+  without triggering the detection.
+affected_detection_logic:
+  name: Ingress Transfer via Windows BITS
+  platform: Elastic Security
+  references:
+    - https://github.com/elastic/detection-rules/blob/main/rules/windows/command_and_control_ingress_transfer_bits.toml
+rule_version: unknown
+credit: ADE Maintainers
+assumption_violated: >
+  The detection assumes that malicious BITS transfers will involve a small,
+  static set of executable or archive file extensions or PE-formatted binaries,
+  and that excluding other file types does not materially affect detection
+  coverage.
+logsource:
+  product: windows
+  category: file_event
+mitre_attack:
+  - T1105
+complexity: Low
+notes: >
+  Omitted file types include non-PE archives (7z, gz, bz2, tar), interpreted
+  scripts (python, sql), alternate PowerShell module formats (psm1, psd1),
+  and macro-enabled Office documents (xlsm, xlsb, docm, pptm).

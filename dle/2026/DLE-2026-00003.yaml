@@ -1,0 +1,32 @@
+id: DLE-2026-00003
+related_ade:
+  - ADE1-01  # Reformatting in Actions – Substring Manipulation
+schema_version: 1.0
+bypass_description: >
+  The detection relies on an exact filename match for "ebpfbackdoor" when
+  monitoring file creation events in persistence-related directories. By
+  creating persistence files with any alternate filename, the attacker
+  achieves identical persistence behavior while avoiding the expected
+  filename substring, causing the detection to fail.
+affected_detection_logic:
+  name: Triple Cross eBPF Rootkit Default Persistence
+  platform: Sigma
+  references:
+    - https://github.com/SigmaHQ/sigma/blob/master/rules/linux/file_event/file_event_lnx_triple_cross_rootkit_persistence.yml
+rule_version: 2022-12-31
+credit: ADE Maintainers
+assumption_violated: >
+  The detection assumes that adversaries will retain the original,
+  threat-intelligence-derived filename when implementing persistence,
+  rather than mutating trivial identifiers such as file names.
+logsource:
+  product: linux
+  category: file_event
+mitre_attack:
+  - T1053.003
+complexity: Low
+notes: >
+  This detection reflects a threat-intelligence-specific indicator from 2022
+  rather than a robust persistence detection. A more resilient approach would
+  monitor file creation activity in /etc/cron.d/ and /etc/sudoers.d/ regardless
+  of filename, or correlate suspicious content and permission changes.
