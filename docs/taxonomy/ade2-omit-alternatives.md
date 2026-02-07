@@ -15,6 +15,7 @@ A detection rule has been assessed using the ADE process and it is determined th
 - PowerShell cmdlet alternatives (`Invoke-WebRequest` vs `Invoke-RestMethod` vs `.NET WebClient`)
 - Cloud API versioning (AWS `ModifyDBInstance` omitted when detecting RDS changes)
 - Reflection/invocation methods (`.Method()` vs `InvokeMember()` vs `GetMethod().Invoke()`)
+- Different process binaries that achieve the same functionality (only detecting `powershell.exe` instead of both `powershell.exe` and `pwsh.exe`)
 
 ---
 
