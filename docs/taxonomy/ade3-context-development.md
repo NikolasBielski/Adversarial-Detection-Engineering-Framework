@@ -199,7 +199,7 @@ CommandLine|contains|all:
 
 ADE3 often appears alongside:
 - **ADE1-01 (Substring Manipulation):** Context manipulation often involves string changes
-- **ADE2-01 (Omit Alternatives):** Cloned binaries are "alternative" execution methods
+- **ADE2-01 (Omit Alternatives - Method/Binary):** Cloned binaries are "alternative" execution methods
 - **ADE4-01 (Gate Inversion):** Timing/aggregation manipulation can flip Boolean gates
 
 ## Testing Your Rules

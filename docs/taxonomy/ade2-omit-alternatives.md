@@ -1,14 +1,14 @@
 # ADE2 - Omit Alternatives
 
-A detection rule has been assessed using the ADE process and it is determined that an **alternative API/function, version, location or file type** is available during the attack AND this alternative is in the detection rule's scope, but the alternative has been **omitted from the detection logic**, resulting in a False Negative.
+A detection rule has been assessed using the ADE process and it is determined that an **alternative method/binary, version, location or file type** is available during the attack AND this alternative is in the detection rule's scope, but the alternative has been **omitted from the detection logic**, resulting in a False Negative.
 
 ## Subcategories
 
-### ADE2-01: Omit Alternatives - API/Function
+### ADE2-01: Omit Alternatives - Method/Binary
 
-**Definition:** Detection logic searches for specific API calls or functions, but alternative APIs/functions that achieve the same effect exist within scope and are omitted.
+**Definition:** Detection logic searches for specific methods or binaries, but alternative methods/binaries that achieve the same effect exist within scope and are omitted.
 
-**Result:** Attack activity using alternative APIs is not detected.
+**Result:** Attack activity using alternative methods/binaries is not detected.
 
 **Common Examples:**
 - Windows API alternatives (e.g., `CreateProcessA` vs `CreateProcessW` vs `NtCreateProcess`)
@@ -63,7 +63,7 @@ A detection rule has been assessed using the ADE process and it is determined th
 
 ### Real-World Detection Logic Bugs
 
-**ADE2-01 - API/Function:**
+**ADE2-01 - Method/Binary:**
 
 1. **[AWS RDS Changes - API Omissions](../../examples/ade2/aws-rds-changes.md)**
    - Missing `ModifyDBInstance`, `RebootDBInstance`, and snapshot restoration APIs
@@ -83,7 +83,7 @@ A detection rule has been assessed using the ADE process and it is determined th
 
 ## Detection Rule Patterns Vulnerable to ADE2
 
-**API/Function Omissions:**
+**Method/Binary Omissions:**
 - Hardcoded function/method names without alternatives
 - Single API endpoint when multiple exist
 - Missing reflection/indirect invocation methods
@@ -115,7 +115,7 @@ A detection rule has been assessed using the ADE process and it is determined th
 ## Related Bug Categories
 
 ADE2 often appears alongside:
-- **ADE1-01 (Substring Manipulation):** Alternative APIs also use different strings
+- **ADE1-01 (Substring Manipulation):** Alternative methods/binaries also use different strings
 - **ADE3-01 (Process Cloning):** Attackers clone binaries to alternative locations
 - **ADE4-03 (Incorrect Expression):** Logic errors compound omission issues
 
@@ -123,8 +123,8 @@ ADE2 often appears alongside:
 
 **Quick Test Questions:**
 
-**For ADE2-01 (API/Function):**
-- Have you enumerated ALL APIs that achieve the same outcome?
+**For ADE2-01 (Method/Binary):**
+- Have you enumerated ALL methods/binaries that achieve the same outcome?
 - Did you check for reflection/indirect invocation methods?
 - Are there language-specific alternatives (PowerShell vs .NET vs WMI)?
 

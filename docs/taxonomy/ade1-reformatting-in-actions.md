@@ -65,7 +65,7 @@ This has been widely exploited by threat actors for years and still appears in m
 ## Related Bug Categories
 
 ADE1-01 often appears alongside:
-- **ADE2-01 (Omit Alternatives - API/Function):** Missing alternative methods that could achieve the same outcome
+- **ADE2-01 (Omit Alternatives - Method/Binary):** Missing alternative methods that could achieve the same outcome
 - **ADE4-01 (Logic Manipulation - Gate Inversion):** String manipulation used to flip negation conditions
 
 ## Testing Your Rules

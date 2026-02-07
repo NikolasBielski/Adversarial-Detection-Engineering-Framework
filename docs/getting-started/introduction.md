@@ -87,7 +87,7 @@ Both ask the same fundamental question from different perspectives.
     └─ ADE1-01 Substring Manipulation
 
 🌳 ADE2 – Omit Alternatives
-    ├─ ADE2-01 API/Function
+    ├─ ADE2-01 Method/Binary
     ├─ ADE2-02 Versioning
     ├─ ADE2-03 Locations
     └─ ADE2-04 File Types
@@ -179,7 +179,7 @@ Rule: Detect PowerShell downloads
 Logic: CommandLine contains "DownloadFile"
 ADE Analysis:
   - ADE1-01: Substring manipulation possible
-  - ADE2-01: Alternative methods (DownloadString, Invoke-WebRequest)
+  - ADE2-01: Alternative methods/binaries (DownloadString, Invoke-WebRequest)
 Testing: Bypass confirmed with string concatenation
 Fix: Use behavioral detection (network + file write + process context)
 Result: Deployed hardened rule → No known bypasses

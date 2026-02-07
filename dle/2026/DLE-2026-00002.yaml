@@ -1,7 +1,7 @@
 id: DLE-2026-00002
 related_ade:
   - ADE1-01  # Reformatting in Actions – Substring Manipulation
-  - ADE2-01  # Omit Alternative API / Function
+  - ADE2-01  # Omit Alternative Method / Binary
 schema_version: 1.0
 bypass_description: >
   The detection relies on static substring matches for "Net.WebClient",

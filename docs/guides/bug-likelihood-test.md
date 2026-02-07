@@ -25,7 +25,7 @@ Then, continue on with the Bug Likelihoot Test.
 - [ ] Is there another method or tool you know of that is in scope, which isn’t in a condition?
 
       - ADE2 – Omit Alternatives
-      - Most commonly ADE2‑01 (API/Function) or ADE2‑04 (File Types).
+      - Most commonly ADE2‑01 (Method/Binary) or ADE2‑04 (File Types).
       - The detection hypothesis assumes a single implementation path, while functionally equivalent alternatives exist within scope but are omitted.
 
 - [ ] Is there another version of the OS, function or API since the rule was created?

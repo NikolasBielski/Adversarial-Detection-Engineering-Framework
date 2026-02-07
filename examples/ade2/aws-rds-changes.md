@@ -1,7 +1,7 @@
 # ADE2-01 & ADE2-02 Example: AWS RDS Database Changes
 
 **Bug Categories:**
-- ADE2-01 Omit Alternatives - API/Function
+- ADE2-01 Omit Alternatives - Method/Binary
 - ADE2-02 Omit Alternatives - Versioning
 
 ## Original Rule
@@ -35,7 +35,7 @@ The detection logic covers:
   - `CreateDBSecurityGroup` (creation)
   - `DeleteDBSecurityGroup` (deletion)
 
-## Bug 1: ADE2-01 - Omitted API Functions
+## Bug 1: ADE2-01 - Omitted Methods/Binaries
 
 ### The Bug
 

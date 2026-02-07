@@ -82,7 +82,7 @@ The attacker **develops the context** by:
 
 ## Why This Is ADE3 (Not ADE2)
 
-**ADE2-01 (Omit Alternatives - API/Function):** Rule omits alternative methods of achieving the same outcome
+**ADE2-01 (Omit Alternatives - Method/Binary):** Rule omits alternative methods of achieving the same outcome
 
 **ADE3-01 (Process Cloning):** Rule relies on string-based process identification, attacker adds a step to manipulate that string
 
