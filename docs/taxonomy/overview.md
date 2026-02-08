@@ -32,7 +32,7 @@ The full taxonomy consists of 4 categories, and 12 sub-categories
 🌳 ADE1 – Reformatting in Actions
     └─ ADE1-01 Substring Manipulation
 🌳 ADE2 – Omit Alternatives
-    ├─ ADE2-01 API/Function
+    ├─ ADE2-01 Method/Binary
     ├─ ADE2-02 Versioning
     ├─ ADE2-03 Locations
     └─ ADE2-04 File Types
@@ -60,10 +60,10 @@ Reformatting in Actions occurs when a detection rule relies on **string match co
 
 ### [ADE2 - Omit Alternatives](ade2-omit-alternatives.md)
 
-An alternative API/function, version, location, or file type is available within the attack scope, but has been omitted from the detection logic, resulting in a False Negative.
+An alternative method/binary, version, location, or file type is available within the attack scope, but has been omitted from the detection logic, resulting in a False Negative.
 
 **Subcategories:**
-- **[ADE2-01 API/Function](ade2-omit-alternatives.md#ade2-01-omit-alternatives---apifunction)**: Alternative APIs achieving same effect are omitted
+- **[ADE2-01 Method/Binary](ade2-omit-alternatives.md#ade2-01-omit-alternatives---methodbinary)**: Alternative methods/binaries achieving same effect are omitted
 - **[ADE2-02 Versioning](ade2-omit-alternatives.md#ade2-02-omit-alternatives---versioning)**: Software/OS version differences not accounted for
 - **[ADE2-03 Locations](ade2-omit-alternatives.md#ade2-03-omit-alternatives---locations)**: Alternative file paths or locations ignored
 - **[ADE2-04 File Types](ade2-omit-alternatives.md#ade2-04-omit-alternatives---file-type)**: Alternative file extensions/formats omitted
@@ -97,7 +97,7 @@ Attacker analyzes detection logic as Boolean conditions and manipulates inputs o
 
 **By Attack Vector:**
 - String manipulation → ADE1-01
-- Missing APIs/methods → ADE2-01
+- Missing methods/binaries → ADE2-01
 - Version drift → ADE2-02
 - Process renaming → ADE3-01
 - Threshold evasion → ADE3-02
@@ -108,7 +108,7 @@ Attacker analyzes detection logic as Boolean conditions and manipulates inputs o
 **By Detection Pattern:**
 - `contains` on cmdline → ADE1-01, ADE3-04
 - Process name checks → ADE3-01
-- API-specific queries → ADE2-01, ADE2-02
+- Method-specific queries → ADE2-01, ADE2-02
 - File paths → ADE2-03
 - File extensions → ADE2-04
 - Thresholds/counts → ADE3-02

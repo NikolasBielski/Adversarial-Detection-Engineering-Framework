@@ -64,7 +64,7 @@ The framework identifies **4 major categories** and **12 subcategories** of dete
     └─ ADE1-01 Substring Manipulation
 
 🌳 ADE2 – Omit Alternatives
-    ├─ ADE2-01 API/Function
+    ├─ ADE2-01 Method/Binary
     ├─ ADE2-02 Versioning
     ├─ ADE2-03 Locations
     └─ ADE2-04 File Types

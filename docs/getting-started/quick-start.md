@@ -60,7 +60,7 @@ Use the [Bug Likelihood Test](../guides/bug-likelihood-test.md) checklist:
 **Quick questions:**
 
 - [ ] Is there string matching on attacker-controlled fields? → **ADE1-01**
-- [ ] Are there alternative APIs/methods omitted? → **ADE2-01**
+- [ ] Are there alternative methods/binaries omitted? → **ADE2-01**
 - [ ] Are there OS/version-specific assumptions? → **ADE2-02**
 - [ ] Does it rely on process names without additional checks, such as hashes or original file names? → **ADE3-01**
 - [ ] Are there time-based constraints? → **ADE3-03**
@@ -68,7 +68,7 @@ Use the [Bug Likelihood Test](../guides/bug-likelihood-test.md) checklist:
 
 **For our example:**
 - [x] String matching: `contains '.DownloadFile('` → **ADE1-01 suspected**
-- [x] Alternative APIs: Only checks 2 methods → **ADE2-01 suspected**
+- [x] Alternative methods: Only checks 2 methods → **ADE2-01 suspected**
 
 ### Step 4: Identify Specific Bugs
 
@@ -105,7 +105,7 @@ Invoke-RestMethod -Uri $url | Out-File $path
 Start-BitsTransfer -Source $url -Destination $path
 ```
 
-✅ **Bug confirmed:** ADE2-01 Omit Alternatives - API/Function
+✅ **Bug confirmed:** ADE2-01 Omit Alternatives - Method/Binary
 
 ### Step 5: Test Bypasses
 
@@ -143,7 +143,7 @@ Invoke-WebRequest -Uri "http://test.com/file" -OutFile "C:\temp\file"
 - Severity: High
 - Evidence: [Test case 2]
 
-**ADE2-01: Omit Alternatives - API/Function**
+**ADE2-01: Omit Alternatives - Method/Binary**
 - Only detects `WebClient.DownloadFile` and `WebClient.DownloadString`
 - Missing: Invoke-WebRequest, Invoke-RestMethod, BITS, .NET methods
 - Severity: High
@@ -245,7 +245,7 @@ EventName == "ModifyDBInstance"
 ```
 
 **ADE Categories:**
-- ADE2-01: Omit alternative APIs
+- ADE2-01: Omit alternative methods/binaries
 - ADE2-02: Version drift
 
 **Fix:** Enumerate all related APIs

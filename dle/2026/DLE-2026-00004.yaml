@@ -1,6 +1,6 @@
 id: DLE-2026-00004
 related_ade:
-  - ADE2-01  # Omit Alternatives – API / Function
+  - ADE2-01  # Omit Alternatives – Method / Binary
   - ADE2-02  # Omit Alternatives – Versioning
 schema_version: 1.0
 bypass_description: >
