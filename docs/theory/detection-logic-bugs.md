@@ -211,6 +211,6 @@ condition: selection_webclient or selection_download
 However, the may be some cases where `Web.Client` can be reformatted or alternative API/Methods be used. See "Fixing the bug" above for a detailed outline on how the Sigma rule [Potential AMSI Bypass Script Using NULL Bits](https://github.com/SigmaHQ/sigma/blob/master/rules/windows/powershell/powershell_script/posh_ps_amsi_null_bits_bypass.yml) picks up these actions, but also has it's own bugs! 
 
 
-### Continue to [Detection Logic Bug Taxonomy](Detection_Logic_Bug_Taxonomy.md)
+### Continue to [Detection Logic Bug Taxonomy](../taxonomy/overview.md)
 
 There are multiple types of detection logic** bugs, each with their own examples and bypasses. View the Detection Logic Bug Taxonomy for definitions and examples of each.
