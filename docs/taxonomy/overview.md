@@ -6,14 +6,14 @@ Rulesets currently informing the taxonomy:
 
 | Integration/Record Source | SIGMA    | Microsoft Sentinel | Elastic Security SIEM | Elastic Security Endgame EDR |
 |:-----------------------|:---------|:------------|:------------|:------------|
-| AWS (CloudTrail)                        | <span style="color:red">❌</span>  | <span style="color:red">❌</span>           | <span style="color:red">❌</span>                      | <span style="color:red">❌</span>                            |
-| Windows PowerShell Script Block Logging | <span style="color:red">❌</span>  | <span style="color:red">❌</span>           | <span style="color:red">❌</span>                      | <span style="color:red">❌</span>                            |
-| Linux                                  | <span style="color:red">❌</span>  |  ✅        | <span style="color:red">❌</span>                      | <span style="color:red">❌</span>                            |
-| Azure                                  | 🟡 TBC       | 🟡 TBC                | <span style="color:red">❌</span>                      | N/A                                 |
-| O365                                   | 🟡 TBC       | 🟡 TBC                | <span style="color:red">❌</span>                      | N/A                                 |
-| LLM                                    | 🟡 TBC       | 🟡 TBC                | <span style="color:red">❌</span>                      | N/A                                 |
-| macOS                                  | 🟡 TBC       | 🟡 TBC                | <span style="color:red">❌</span>                      | <span style="color:red">❌</span>                            |
-| Okta                                   | 🟡 TBC       | 🟡 TBC                | <span style="color:red">❌</span>                      | N/A                                 |
+| AWS (CloudTrail)                        | ❌  | ❌           | ❌                      | ❌                            |
+| Windows PowerShell Script Block Logging | ❌  | ❌           | ❌                      | ❌                            |
+| Linux                                  | ❌  | ✅           | ❌                      | ❌                            |
+| Azure                                  | 🟡 TBC | 🟡 TBC          | ❌                      | N/A                           |
+| O365                                   | 🟡 TBC | 🟡 TBC          | ❌                      | N/A                           |
+| LLM                                    | 🟡 TBC | 🟡 TBC          | ❌                      | N/A                           |
+| macOS                                  | 🟡 TBC | 🟡 TBC          | ❌                      | ❌                            |
+| Okta                                   | 🟡 TBC | 🟡 TBC          | ❌                      | N/A                           |
 ---
 ✅ = Unaffected (No logic bugs found)
 ❌ = Affected  (Logic bugs found)
