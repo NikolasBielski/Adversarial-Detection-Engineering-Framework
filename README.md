@@ -197,7 +197,17 @@ We welcome contributions! Areas of active development include:
 
 ## License
 
-This project is licensed under [GNU GPL v3](LICENSE).
+| Characteristic               | Value       |
+|------------------------------|-------------|
+| Based on                     | [MIT license](https://opensource.org/licenses/MIT) |
+| Distribution                 | Yes         |
+| Modification                 | Yes         |
+| Private Use                  | Yes         |
+| Commercial Use               | Yes         |
+| Liability                    | No          |
+| Warranty                     | No          |
+| License and Copyright Notice | Yes         |
+| Author Attribution           | Required    |
 
 ## Disclaimer
 
