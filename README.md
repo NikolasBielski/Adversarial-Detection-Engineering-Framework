@@ -62,7 +62,7 @@ The framework identifies **4 major categories** and **12 subcategories** of dete
 ```
 🌳 ADE1 – Reformatting in Actions
     ├─ ADE1-01 Substring Manipulation
-    └─ ADE1-01 Normalization Asymmetry
+    └─ ADE1-02 Normalization Asymmetry
 
 🌳 ADE2 – Omit Alternatives
     ├─ ADE2-01 Method/Binary
