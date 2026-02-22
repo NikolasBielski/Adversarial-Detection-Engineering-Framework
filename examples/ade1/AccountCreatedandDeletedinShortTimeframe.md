@@ -76,9 +76,7 @@ kind: Scheduled
 
 ## The Bug
 
-This detection logic relies on PowerShell records that include Get-NETTCPConnection substring.
-
-here is an inconsistency in how User Principal Names (UPNs) are extracted for 'Add user' versus 'Delete user' operations, particularly for guest accounts, which can lead to a failure in joining the creation and deletion events. That failure can be abused by an attacker to bypass detection.
+There is an inconsistency in how User Principal Names (UPNs) are extracted for 'Add user' versus 'Delete user' operations, particularly for guest accounts, which can lead to a failure in joining the creation and deletion events. That failure can be abused by an attacker to bypass detection.
 
 ## Log Source Context
 
