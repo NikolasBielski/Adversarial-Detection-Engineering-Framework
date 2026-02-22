@@ -31,7 +31,7 @@ The full taxonomy consists of 4 categories, and 12 sub-categories
 ```
 🌳 ADE1 – Reformatting in Actions
     ├─ ADE1-01 Substring Manipulation
-    └─ ADE1-01 Normalization Asymmetry
+    └─ ADE1-02 Normalization Asymmetry
 🌳 ADE2 – Omit Alternatives
     ├─ ADE2-01 Method/Binary
     ├─ ADE2-02 Versioning
