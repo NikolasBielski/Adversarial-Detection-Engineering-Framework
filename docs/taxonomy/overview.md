@@ -9,7 +9,7 @@ Rulesets currently informing the taxonomy:
 | AWS (CloudTrail)                        | ❌  | ❌           | ❌                      | ❌                            |
 | Windows PowerShell Script Block Logging | ❌  | ❌           | ❌                      | ❌                            |
 | Linux                                  | ❌  | ✅           | ❌                      | ❌                            |
-| Azure                                  | 🟡 TBC | 🟡 TBC          | ❌                      | N/A                           |
+| Azure                                  | 🟡 TBC | ❌          | ❌                      | N/A                           |
 | O365                                   | 🟡 TBC | 🟡 TBC          | ❌                      | N/A                           |
 | LLM                                    | 🟡 TBC | 🟡 TBC          | ❌                      | N/A                           |
 | macOS                                  | 🟡 TBC | 🟡 TBC          | ❌                      | ❌                            |
@@ -30,7 +30,8 @@ The full taxonomy consists of 4 categories, and 12 sub-categories
 
 ```
 🌳 ADE1 – Reformatting in Actions
-    └─ ADE1-01 Substring Manipulation
+    ├─ ADE1-01 Substring Manipulation
+    └─ ADE1-01 Normalization Asymmetry
 🌳 ADE2 – Omit Alternatives
     ├─ ADE2-01 Method/Binary
     ├─ ADE2-02 Versioning
@@ -39,7 +40,7 @@ The full taxonomy consists of 4 categories, and 12 sub-categories
 🌳 ADE3 – Context Development
     ├─ ADE3-01 Process Cloning
     ├─ ADE3-02 Aggregation Hijacking
-    └─ ADE3-03 Timing and Scheduling
+    ├─ ADE3-03 Timing and Scheduling
     └─ ADE3-04 Event Fragmentation
 🌳 ADE4 – Logic Manipulation
     ├─ ADE4-01 Gate Inversion
@@ -55,6 +56,8 @@ Reformatting in Actions occurs when a detection rule relies on **string match co
 
 **Subcategory:**
 - **[ADE1-01 Substring Manipulation](ade1-reformatting-in-actions.md#ade1-01-substring-manipulation)**: Attacker alters or obfuscates input data to bypass substring matches
+- **[ADE1-02 Normalization Asymmetry](ade1-reformatting-in-actions.md#ade1-02-normalization-asymmetry)**: Attacker leverages inconsistent normalization across detection branches so that logically identical entities fail equality checks
+
 
 ---
 
@@ -107,6 +110,7 @@ Attacker analyzes detection logic as Boolean conditions and manipulates inputs o
 
 **By Detection Pattern:**
 - `contains` on cmdline → ADE1-01, ADE3-04
+- `join` on query logic → ADE1-02, ADE3-02
 - Process name checks → ADE3-01
 - Method-specific queries → ADE2-01, ADE2-02
 - File paths → ADE2-03
