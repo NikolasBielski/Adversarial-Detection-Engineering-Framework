@@ -57,7 +57,7 @@ The purpose of ADE is not to force perfection in design, although that is an ide
 
 ## ADE Detection Logic Bug Taxonomy
 
-The framework identifies **4 major categories** and **12 subcategories** of detection logic bugs:
+The framework identifies **4 major categories** and **13 subcategories** of detection logic bugs:
 
 ```
 🌳 ADE1 – Reformatting in Actions
@@ -98,7 +98,7 @@ The framework identifies **4 major categories** and **12 subcategories** of dete
 
 [Comprehensive classification](docs/taxonomy/overview.md) with clear terminology:
 - 4 major categories
-- 12 detailed subcategories
+- 13 detailed subcategories
 - Consistent labeling system (ADE1-01, ADE2-01, etc.)
 - Mapping to real-world detection rules
 
